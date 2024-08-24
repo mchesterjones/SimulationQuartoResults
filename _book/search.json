@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html#table-of-contents",
+    "href": "index.html#table-of-contents",
+    "title": "Results from Simulation Study",
+    "section": "0.1 Table of Contents",
+    "text": "0.1 Table of Contents\n\nProtocol of Simulation Study 1\nResults of Simulation Study 1"
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Results from Simulation Study",
+    "section": "0.2 Introduction",
+    "text": "0.2 Introduction\nIn this book, we will cover the following:\n\nThe protocols used in the simulation studies.\nDetailed results and analysis of the simulations.\nConclusions and future directions."
+  },
+  {
+    "objectID": "01-Protocol1.html#research-question",
+    "href": "01-Protocol1.html#research-question",
+    "title": "2  Simulation Study 1 Protocol",
+    "section": "2.1 Research Question:",
+    "text": "2.1 Research Question:\nAt implementation, how does missing data impact different sample sizes at low outcome prevalance rates?"
+  },
+  {
+    "objectID": "01-Protocol1.html#aims",
+    "href": "01-Protocol1.html#aims",
+    "title": "2  Simulation Study 1 Protocol",
+    "section": "2.2 Aims:",
+    "text": "2.2 Aims:\n\nTo determine the impact of missing data in one of five collected continuous variables in a logistic regression model\nTo investigate methods for handling missing data applied at deployment and how that may affect the precision of the model\nTo attain convergence at decreasing levels of prevalence"
+  },
+  {
+    "objectID": "01-Protocol1.html#data-generating-mechanisms",
+    "href": "01-Protocol1.html#data-generating-mechanisms",
+    "title": "2  Simulation Study 1 Protocol",
+    "section": "2.3 Data-generating mechanisms",
+    "text": "2.3 Data-generating mechanisms\nI will develop a CPM based on logistic regression to model the binary outcome Y with five continuous predictors X1 -X5. The binary outcome Y is always observed. One predictor, X1 is partially observed depending on the mechanism for missing data (i.e., the probability X1 is missing). The remaining predictors (X2 - X5) are fully observed.   \nData will be generated to create a development dataset to build the CPM (fully observed). The second dataset will represent a validation study and implementation dataset. All datasets will be generated with Nsim = 100,000. The prevalence of Y will be fixed at 50% and decreased to 25%, 10% and 1%. Each simulated data generating mechanism will be repeated for 200 per simulation scenario (per combination of each parameter). Predictors X1 -X5 will be generated from a standard normal distribution. Missingness will be increased across 25%, 50% and 75%. The effect of variables on the probability of missingness will be fixed at 0 for all predictors except X2 which is fixed at 0.5.\n# Table 1: Notation of Simulation Study\n| Parameter | Description |\n|----------------------------------|---------------------------------------------------------------------------------------------|\n| Outcome | Binary outcome (Y), assuming the binary outcome (Y) is always observed. |\n| Predictors | Five continuous predictors generated from a normal distribution: \\[X_1\\] is partially observed depending on the probability \\[X_1\\] is missing at that time point. |\n| Dataset | Let \\[X = \\{x_{ij}\\}\\] a multivariate dataset such that \\[\\{x_{ij}\\}\\] is the value of variable \\[X_j\\], \\[j \\in \\{1,\\ldots,J\\}\\] for subject \\[i \\in \\{1,\\ldots,n\\}\\]. |\n| Missing indicators | Let \\[M = \\{m_{ij}\\}\\] be a matrix of indicators, such that \\[m_{ij} = 1\\] when \\[x_{ij}\\] is missing or \\[m_{ij} = 0\\] otherwise. |\n| Level of missingness in \\[X_1\\] | The \\[P(m_{ij} = 1) = \\pi_1\\] where \\[\\pi_1 \\in \\{0.25, 0.5, 0.75\\}\\]. |\n# Table 2: Parameters\n| Parameter | Value or Simulation Model |\n|-----------------------------------------|-------------------------------------------------------------------------------------------|\n| Development sample size | \\[N_{\\text{dev}}  = 500; 10,000; 100,000\\] |\n| Validation sample size | \\[ N_{\\text{val}} = 500; 10,000; 100,000 \\] |\n| Prevalence of the outcome (Y) | \\[P[Y=1] = \\text{Binom}(\\text{expit}(\\gamma_0 + \\gamma_{X1} X_1 + \\gamma_{X2} X_2 + \\gamma_{X3} X_3 + \\gamma_{X4} X_4 + \\gamma_{X5} X_5)) \\] varied across 50%, 10%, and 1% |\n| Coefficient of predictors of outcome | \\[\\gamma_{X1}, \\gamma_{X2}, \\gamma_{X3}, \\gamma_{X4}, \\gamma_{X5} = 0.5\\] |\n| Missingness | \\[P[R=1] = \\text{Binom}(\\text{expit}(\\beta_0 + \\beta_{X1} X_1 + \\beta_{X2} X_2 + \\beta_{X3} X_3 + \\beta_{X4} X_4 + \\beta_{X5} X_5))\\] varied across 75%, 50%, and 25% |\n| Coefficient of predictors of missingness | $$\\beta_{X2}=0.5$$\n# Table 3: Target and Performance Measures\n| Metric | Definition |\n|---------------------------------|----------------------------------------------------------------------------------------------|\n| Mean Square Error | A measure of how close a fitted line is to the data points. |\n| Calibration in the large | Distance between the proportion observed with an event to the average predicted probability |\n| Calibration slope | The intercept from a model fitted to the observed outcome with the linear predictor as an offset |\n| Observed: Expected ratio | Calculated by dividing the observed rate (patients who had an actual outcome) by the expected rate (patients who were expected to have the outcome) |\n| Discrimination (Concordance/C-statistic) | The probability that a randomly selected individual who experienced the outcome has a higher predicted probability than a patient that did not experience the outcome. |"
+  },
+  {
+    "objectID": "02-Results1.html#results1-intro",
+    "href": "02-Results1.html#results1-intro",
+    "title": "3  Simulation Study 1 Results",
+    "section": "3.1 Results from Study 1",
+    "text": "3.1 Results from Study 1\nIn this section, the results from the first simulation study are reported. The development simulation parameters were consistent with the validation parameters except there was no missingness. Sample size was varied at n=500, n=10,000 and n=100,000 and outcome prevalance varied at 1%, 5% and 10%. The missingess in the validation dataset was varied at 25%, 50% and 75% of one predictor variable x1. The first section describes the scenario where n=500.\n\n3.1.1 Predictive Performance from Study 1 N=500 under Missing at Random\n\n3.1.1.1 Brier Score\nThe Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.\n\n\n\n\n\nBrier Score for each combination of prevalence, sample size, missingness under Missing at Random\n\n\n\n\n\n\n3.1.1.2 Discrimination\nThe discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.\n\n\n\n\n\nAUC for each combination of prevalence, sample size, missingness under Missing at Random\n\n\n\n\n\n\n3.1.1.3 Calibration in the Large and Calibration Slope\nThe Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope.\nThe ideal value of CATL is 0, which indicates perfect calibration, positive values indicate the model is underestimating the risk while negative values indicate overestimation. Larger deviations from 0 suggest poorer calibration.\n\n\n\n\n\nCalibration in the Large for each combination of prevalence, sample size, missingness under Missing at Random\n\n\n\n\nThe ideal value of the Calibration Slope is 1 indicating perfect calibration across all risk levels. Values less than 1 suggest overfitting (predictions are too extreme), while values greater than 1 suggest underfitting (predictions are too conservative). Values that differ significantly from 1 indicate poor calibration.\n\n\n\n\n\nCalibration Slope for each combination of prevalence, sample size, missingness under Missing at Random\n\n\n\n\n\n\n\n3.1.2 Bias\nThe Bias was assessed for each simulation (where 0 indicates no bias and the model estimates are on average equal to the true values).\n\n\n\n\n\nBias for each combination of prevalence, sample size, missingness under Missing at Random\n\n\n\n\n\n\n3.1.3 Root Mean Square Error\nThe RMSE was assessed for each simulation where lower error indicates a better fit of the model. The lowest prevalence simulations (1%) had the lowest mean square error.\n\n\n\n\n\nRMSE for each combination of prevalence, sample size, missingness under Missing at Random"
+  }
+]

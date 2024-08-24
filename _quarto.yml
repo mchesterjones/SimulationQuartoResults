@@ -1,0 +1,19 @@
+project:
+  type: book
+  
+book: 
+  title: "Results from Simulation Study"
+  author: "Mae Chester-Jones"
+  chapters: 
+    - text: "Front Page"
+      file: "index.qmd"
+    - file: "01-Protocol1.qmd"
+    - file: "02-Results1.qmd"
+
+  sidebar: 
+    style: "docked"
+  
+format: 
+  html: default
+  
+editor: visual

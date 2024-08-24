@@ -1,0 +1,71 @@
+---
+title: "Simulation Study 1 Protocol"
+---
+
+## Research Question: 
+
+At implementation, how does missing data impact different sample sizes at low outcome prevalance rates?
+
+## Aims: 
+
+1.  To determine the impact of missing data in one of five collected continuous variables in a logistic regression model
+
+2.  To investigate methods for handling missing data applied at deployment and how that may affect the precision of the model
+
+3.  To attain convergence at decreasing levels of prevalence
+
+## Data-generating mechanisms
+
+I will develop a CPM based on logistic regression to model the binary outcome Y with five continuous predictors X~1~ -X~5.~ The binary outcome Y is always observed. One predictor, X~1~ is partially observed depending on the mechanism for missing data (i.e., the probability X~1~ is missing). The remaining predictors (X~2~ - X~5~) are fully observed.   
+
+Data will be generated to create a development dataset to build the CPM (fully observed). The second dataset will represent a validation study and implementation dataset. All datasets will be generated with N~sim~ = 100,000. The prevalence of Y will be fixed at 50% and decreased to 25%, 10% and 1%. Each simulated data generating mechanism will be repeated for 200 per simulation scenario (per combination of each parameter). Predictors X~1~ -X~5~ will be generated from a standard normal distribution. Missingness will be increased across 25%, 50% and 75%. The effect of variables on the probability of missingness will be fixed at 0 for all predictors except X~2~ which is fixed at 0.5.
+
+\# Table 1: Notation of Simulation Study
+
+\| Parameter \| Description \|
+
+\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+
+\| Outcome \| Binary outcome (Y), assuming the binary outcome (Y) is always observed. \|
+
+\| Predictors \| Five continuous predictors generated from a normal distribution: $$X_1$$ is partially observed depending on the probability $$X_1$$ is missing at that time point. \|
+
+\| Dataset \| Let $$X = \{x_{ij}\}$$ a multivariate dataset such that $$\{x_{ij}\}$$ is the value of variable $$X_j$$, $$j \in \{1,\ldots,J\}$$ for subject $$i \in \{1,\ldots,n\}$$. \|
+
+\| Missing indicators \| Let $$M = \{m_{ij}\}$$ be a matrix of indicators, such that $$m_{ij} = 1$$ when $$x_{ij}$$ is missing or $$m_{ij} = 0$$ otherwise. \|
+
+\| Level of missingness in $$X_1$$ \| The $$P(m_{ij} = 1) = \pi_1$$ where $$\pi_1 \in \{0.25, 0.5, 0.75\}$$. \|
+
+\# Table 2: Parameters
+
+\| Parameter \| Value or Simulation Model \|
+
+\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+
+\| Development sample size \| $$N_{\text{dev}}  = 500; 10,000; 100,000$$ \|
+
+\| Validation sample size \| $$ N_{\text{val}} = 500; 10,000; 100,000 $$ \|
+
+\| Prevalence of the outcome (Y) \| $$P[Y=1] = \text{Binom}(\text{expit}(\gamma_0 + \gamma_{X1} X_1 + \gamma_{X2} X_2 + \gamma_{X3} X_3 + \gamma_{X4} X_4 + \gamma_{X5} X_5)) $$ varied across 50%, 10%, and 1% \|
+
+\| Coefficient of predictors of outcome \| $$\gamma_{X1}, \gamma_{X2}, \gamma_{X3}, \gamma_{X4}, \gamma_{X5} = 0.5$$ \|
+
+\| Missingness \| $$P[R=1] = \text{Binom}(\text{expit}(\beta_0 + \beta_{X1} X_1 + \beta_{X2} X_2 + \beta_{X3} X_3 + \beta_{X4} X_4 + \beta_{X5} X_5))$$ varied across 75%, 50%, and 25% \|
+
+\| Coefficient of predictors of missingness \| \$\$\\beta\_{X2}=0.5\$\$
+
+\# Table 3: Target and Performance Measures
+
+\| Metric \| Definition \|
+
+\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+
+\| Mean Square Error \| A measure of how close a fitted line is to the data points. \|
+
+\| Calibration in the large \| Distance between the proportion observed with an event to the average predicted probability \|
+
+\| Calibration slope \| The intercept from a model fitted to the observed outcome with the linear predictor as an offset \|
+
+\| Observed: Expected ratio \| Calculated by dividing the observed rate (patients who had an actual outcome) by the expected rate (patients who were expected to have the outcome) \|
+
+\| Discrimination (Concordance/C-statistic) \| The probability that a randomly selected individual who experienced the outcome has a higher predicted probability than a patient that did not experience the outcome. \|

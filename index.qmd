@@ -1,0 +1,20 @@
+---
+title: "Results from Simulation Study"
+author: "Mae Chester-Jones"
+date: "2024-08-24"
+---
+
+## Table of Contents
+
+1. Protocol of Simulation Study 1
+2. Results of Simulation Study 1
+
+## Introduction
+
+In this book, we will cover the following:
+
+- The protocols used in the simulation studies.
+- Detailed results and analysis of the simulations.
+- Conclusions and future directions.
+
+
