@@ -8,7 +8,8 @@ book:
     - text: "Front Page"
       file: "index.qmd"
     - file: "01-Protocol1.qmd"
-    - file: "02-Results1.qmd"
+    - file: "02-Results1MAR.qmd"
+    - file: "03-Results1MNAR.qmd"
 
   sidebar: 
     style: "docked"
