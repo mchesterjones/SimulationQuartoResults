@@ -15,7 +15,7 @@ library(flextable)
 setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\SimulationStudy\\Data") 
 
 # Data
-load("MNAR_100000_Combined_Long_29Aug2024.Rdata")
+load("MNAR_100000_Combined_Long_30Aug2024.Rdata")
 
 
 ```

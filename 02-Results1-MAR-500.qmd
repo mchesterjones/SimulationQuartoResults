@@ -4,7 +4,15 @@ title: "Results for MAR N=500"
 
 ## Results from Study 1 {#results1-intro}
 
-In this section, the results from the first simulation study are reported. The development simulation parameters were consistent with the validation parameters except there was no missingness. Sample size was varied at n=500, n=10,000 and n=100,000 and outcome prevalance varied at 1%, 5% and 10%. The missingess in the validation dataset was varied at 25%, 50% and 75% of one predictor variable x1. The first section describes the scenario where n=500.
+In this section, the results from the first simulation study are reported under Missing at Random (MAR), @fig-mar. The development simulation parameters were consistent with the validation parameters except there was no missingness. Sample size was varied at n=500, n=10,000 and n=100,000 and outcome prevalance varied at 1%, 5% and 10%. The missingness in the validation dataset was varied at 25%, 50% and 75% of one predictor variable x1. The first section describes the scenario where n=500.
+
+```{r flow chart caption}
+#| label: fig-mar
+#| out-width: "491px"
+#| fig-cap: "Missing at Random DAG"
+knitr::include_graphics("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\QuartoResults\\figures\\MAR.png")
+
+```
 
 ```{r}
 #| label: load_packages 
@@ -25,8 +33,6 @@ setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Progr
 ########################
 load("MAR_500_Combined_Long_28Aug2024.Rdata")
 ```
-
-
 
 ### Predictive Performance from Study 1 N=500 under Missing at Random {#-redictive-performance-n500}
 
