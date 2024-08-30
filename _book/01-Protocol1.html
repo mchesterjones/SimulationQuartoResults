@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-Results1.html" rel="next">
+<link href="./02-Results1-MAR-500.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -115,8 +115,38 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Results1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation Study 1 Results</span></span></a>
+  <a href="./02-Results1-MAR-500.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results for MAR N=500</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Results1-MAR-10000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results for MAR, N=10,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Results1-MAR-100000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results for MAR N=100,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Results1-MNAR-500.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Results for Missing-Not-at-Random N=500</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Results1-MNAR-10000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Results under Missing-Not-at-Random for N=10,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Results1-MNAR-100000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Results under Missing-Not-at-Random for N= 100,000</span></span></a>
   </div>
 </li>
     </ul>
@@ -172,22 +202,49 @@ ul.task-list li input[type="checkbox"] {
 <p>I will develop a CPM based on logistic regression to model the binary outcome Y with five continuous predictors X<sub>1</sub> -X<sub>5.</sub> The binary outcome Y is always observed. One predictor, X<sub>1</sub> is partially observed depending on the mechanism for missing data (i.e., the probability X<sub>1</sub> is missing). The remaining predictors (X<sub>2</sub> - X<sub>5</sub>) are fully observed. &nbsp;&nbsp;</p>
 <p>Data will be generated to create a development dataset to build the CPM (fully observed). The second dataset will represent a validation study and implementation dataset. All datasets will be generated with N<sub>sim</sub> = 100,000. The prevalence of Y will be fixed at 50% and decreased to 25%, 10% and 1%. Each simulated data generating mechanism will be repeated for 200 per simulation scenario (per combination of each parameter). Predictors X<sub>1</sub> -X<sub>5</sub> will be generated from a standard normal distribution. Missingness will be increased across 25%, 50% and 75%. The effect of variables on the probability of missingness will be fixed at 0 for all predictors except X<sub>2</sub> which is fixed at 0.5.</p>
 <p># Table 1: Notation of Simulation Study</p>
-<p>| Parameter | Description |</p>
-<p>|----------------------------------|---------------------------------------------------------------------------------------------|</p>
-<p>| Outcome | Binary outcome (Y), assuming the binary outcome (Y) is always observed. |</p>
-<p>| Predictors | Five continuous predictors generated from a normal distribution: <span class="math display">\[X_1\]</span> is partially observed depending on the probability <span class="math display">\[X_1\]</span> is missing at that time point. |</p>
-<p>| Dataset | Let <span class="math display">\[X = \{x_{ij}\}\]</span> a multivariate dataset such that <span class="math display">\[\{x_{ij}\}\]</span> is the value of variable <span class="math display">\[X_j\]</span>, <span class="math display">\[j \in \{1,\ldots,J\}\]</span> for subject <span class="math display">\[i \in \{1,\ldots,n\}\]</span>. |</p>
-<p>| Missing indicators | Let <span class="math display">\[M = \{m_{ij}\}\]</span> be a matrix of indicators, such that <span class="math display">\[m_{ij} = 1\]</span> when <span class="math display">\[x_{ij}\]</span> is missing or <span class="math display">\[m_{ij} = 0\]</span> otherwise. |</p>
-<p>| Level of missingness in <span class="math display">\[X_1\]</span> | The <span class="math display">\[P(m_{ij} = 1) = \pi_1\]</span> where <span class="math display">\[\pi_1 \in \{0.25, 0.5, 0.75\}\]</span>. |</p>
-<p># Table 2: Parameters</p>
-<p>| Parameter | Value or Simulation Model |</p>
-<p>|-----------------------------------------|-------------------------------------------------------------------------------------------|</p>
-<p>| Development sample size | <span class="math display">\[N_{\text{dev}}  = 500; 10,000; 100,000\]</span> |</p>
-<p>| Validation sample size | <span class="math display">\[ N_{\text{val}} = 500; 10,000; 100,000 \]</span> |</p>
-<p>| Prevalence of the outcome (Y) | <span class="math display">\[P[Y=1] = \text{Binom}(\text{expit}(\gamma_0 + \gamma_{X1} X_1 + \gamma_{X2} X_2 + \gamma_{X3} X_3 + \gamma_{X4} X_4 + \gamma_{X5} X_5)) \]</span> varied across 50%, 10%, and 1% |</p>
-<p>| Coefficient of predictors of outcome | <span class="math display">\[\gamma_{X1}, \gamma_{X2}, \gamma_{X3}, \gamma_{X4}, \gamma_{X5} = 0.5\]</span> |</p>
-<p>| Missingness | <span class="math display">\[P[R=1] = \text{Binom}(\text{expit}(\beta_0 + \beta_{X1} X_1 + \beta_{X2} X_2 + \beta_{X3} X_3 + \beta_{X4} X_4 + \beta_{X5} X_5))\]</span> varied across 75%, 50%, and 25% |</p>
-<p>| Coefficient of predictors of missingness | $$\beta_{X2}=0.5$$</p>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 64%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Outcome</td>
+<td>Binary Outcome <span class="math inline">\(Y\)</span> that is always observed</td>
+<td>Prevalence varied at <span class="math inline">\(1\)</span>%, <span class="math inline">\(5\)</span>% and <span class="math inline">\(10\)</span>%</td>
+</tr>
+<tr class="even">
+<td>Predictors</td>
+<td>Five predictors <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span>, <span class="math inline">\(X_4\)</span>, <span class="math inline">\(X_5\)</span> where one predictor <span class="math inline">\(X_1\)</span> is partially observed</td>
+<td>Predictors are generated from normal distribution</td>
+</tr>
+<tr class="odd">
+<td>Model</td>
+<td>Logistic regression model $P[Y=1] = (( +* X_1 + X_2 +* X_3 + X_4 +* X_5 + _{U}U)) $</td>
+<td><span class="math inline">\(\gamma_{X_1}, \gamma_{X_2}, \gamma_{X_3}, \gamma_{X_4}, \gamma_{X_5} = 0.5\)</span></td>
+</tr>
+<tr class="even">
+<td>Missingness</td>
+<td><p>The probability missingness in <span class="math inline">\(X_1\)</span></p>
+<p><span class="math inline">\(P[R=1] = \text{Binom}(\text{expit}(\beta_0 + \beta_{X1} X_1 + \beta_{X2} X_2 + \beta_{X3} X_3 + \beta_{X4} X_4 + \beta_{X5} X_5 + \beta_{U}U))\)</span></p></td>
+<td><p>Missingness is varied at <span class="math inline">\(25\)</span>% <span class="math inline">\(50\)</span>% and <span class="math inline">\(75\)</span>% where <span class="math inline">\(\beta_{X_2} = 0.5\)</span> under MAR and,</p>
+<p><span class="math inline">\(\beta_{X_1}\)</span>, <span class="math inline">\(\beta_{X_2}\)</span>, <span class="math inline">\(\beta_{U}\)</span> = <span class="math inline">\(0.5\)</span> under MNAR</p></td>
+</tr>
+<tr class="odd">
+<td>Sample size</td>
+<td>Validation sample size always equals development sample size</td>
+<td><span class="math display">\[ N_{\text{val}}, N_{\text{dev}} = 500; 10,000; 100,000 \]</span></td>
+</tr>
+</tbody>
+</table>
 <p># Table 3: Target and Performance Measures</p>
 <p>| Metric | Definition |</p>
 <p>|---------------------------------|----------------------------------------------------------------------------------------------|</p>
@@ -441,8 +498,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-Results1.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation Study 1 Results</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-Results1-MAR-500.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results for MAR N=500</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

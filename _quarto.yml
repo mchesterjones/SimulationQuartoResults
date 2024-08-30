@@ -8,8 +8,12 @@ book:
     - text: "Front Page"
       file: "index.qmd"
     - file: "01-Protocol1.qmd"
-    - file: "02-Results1MAR.qmd"
-    - file: "03-Results1MNAR.qmd"
+    - file: "02-Results1-MAR-500.qmd"
+    - file: "03-Results1-MAR-10000.qmd"
+    - file: "04-Results1-MAR-100000.qmd"
+    - file: "05-Results1-MNAR-500.qmd"
+    - file: "06-Results1-MNAR-10000.qmd"
+    - file: "07-Results1-MNAR-100000.qmd"
 
   sidebar: 
     style: "docked"
