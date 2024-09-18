@@ -2,19 +2,7 @@
 title: "Results for MAR N=500"
 ---
 
-## Results from Study 1 {#results1-intro}
-
-In this section, the results from the first simulation study are reported under Missing at Random (MAR), @fig-mar. The development simulation parameters were consistent with the validation parameters except there was no missingness. Sample size was varied at n=500, n=10,000 and n=100,000 and outcome prevalance varied at 1%, 5% and 10%. The missingness in the validation dataset was varied at 25%, 50% and 75% of one predictor variable x1. The first section describes the scenario where n=500.
-
-```{r flow chart caption}
-#| label: fig-mar
-#| out-width: "491px"
-#| fig-cap: "Missing at Random DAG"
-knitr::include_graphics("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\QuartoResults\\figures\\MAR.png")
-
-```
-
-```{r}
+```{r, echo=FALSE}
 #| label: load_packages 
 #| include: false
 library(dplyr)
@@ -23,7 +11,7 @@ library(tidyr)
 library(flextable)
 ```
 
-```{r}
+```{r , echo=FALSE}
 #| label: open_datasets_mar_n500 
 #| include: false
 ## Set working directory 
@@ -36,18 +24,7 @@ load("MAR_500_Combined_Long_28Aug2024.Rdata")
 
 ### Predictive Performance from Study 1 N=500 under Missing at Random {#-redictive-performance-n500}
 
-At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, almost half the simulations (46%) at 1% prevalence were unable to calculate the discrimination (AUC), calibration intercept and slope, Table 1.
-
-```{r}
-# table of results
-  table_resultsn500 <- simulation_parameters_long %>% 
-        select(Parameter,"Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
-        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
-   
-  ## quick table 
-  ft_results <- flextable(table_resultsn500) %>%
-     set_caption(caption = "Table 1: Performance Measures at N=500 under MAR")
-```
+At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, almost half the simulations (46%) at 1% prevalence were unable to calculate the discrimination (AUC), calibration intercept and slope, @tbl-results_mar500. 
 
 #### Brier Score
 
@@ -282,5 +259,25 @@ The RMSE was assessed for each simulation where lower error indicates a better f
           axis.text.y = element_blank(),  # Remove y-axis text
           axis.ticks.y = element_blank())  # Remove y-axis tick  
   
+  
+```
+
+
+The average performance measures across 100 simulations are summarised in @tbl-results_mar500. 
+```{r, echo=FALSE}
+#| label: tbl-results_mar500
+#| tbl-cap: Performance Measures at N=500 under MAR
+
+# table of results
+  table_resultsn500 <- simulation_parameters_long %>% 
+        select("Parameter","Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
+        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
+   
+  ## quick table 
+  table_resultsn500 %>%
+    knitr::kable(col.names = c("Scenario", "Method to handle missing data", "Performance Measure", "Average", "Lower Confidence Interval", "Upper Confidence Interval", "Number of simulations that failed to converge"))
+                               
+                               
+
   
 ```

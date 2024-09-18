@@ -2,21 +2,7 @@
 title: "Results for Missing-Not-at-Random N=500"
 ---
 
-## Results under Missing-Not-at-Random
-
-In this scenario we include an unmeasured variable $U$ that induces a relationship between $R_1$ and $Y$. The Missing-Not-at-Random mechanism is described in the DAG below, (@fig-mnar).
-
-As with the MAR scenario, this was repeated for sample sizes of $500$, $10,000$ and $100,000$ for development dataset and validation dataset ( $N_\text{dev}$ always equals $N_\text{val}$). The proportion of outcome varied between $1$% $5$% and $10$% and missingness in $X_1$ was varied between $25$%, $50$% and $75$%. The performance measures are compared below.
-
-```{r flow chart caption}
-#| label: fig-mnar
-#| out-width: "491px"
-#| fig-cap: "Missing-Not-at-Random DAG"
-knitr::include_graphics("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\QuartoResults\\figures\\MNAR.png")
-
-```
-
-```{r}
+```{r  echo = FALSE,warning=FALSE,message = FALSE}
 # Libraries 
 #| label: load_packages 
 #| echo: false
@@ -24,13 +10,17 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(flextable)
+library(captioner)
+library(officer)
+library(kableExtra)
 
 
 ## Set working directory 
 setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\SimulationStudy\\Data") 
 
 # Data
-load("MNAR_500_Combined_Long_30Aug2024.Rdata")
+load("MNAR_500_Combined_Long_18Sep2024.Rdata")
+load("MNAR_500_Combined_18Sep2024.Rdata")
 
 # Number of NAs
 NAs_n500 <- simulation_parameters_long %>% filter(NACount!=0)
@@ -40,23 +30,13 @@ NAs_n500 <- simulation_parameters_long %>% filter(NACount!=0)
 
 ## Sample size N=500
 
-At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, more than half the simulations at 1% prevalence were unable to calculate the discrimination (AUC) (55%), calibration intercept (55%) and slope (57%), Table 4.
-
-```{r}
-# table of results
-  table_resultsn500 <- simulation_parameters_long %>% 
-        select(Parameter,"Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
-        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
-   
-  ## quick table 
-  ft_results <- flextable(table_resultsn500) %>%
-     set_caption(caption = "Table 4: Performance Measures at N=500 under MNAR")
-  
-```
+At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, more than half the simulations at 1% prevalence were unable to calculate the discrimination (AUC) (55%), calibration intercept (55%) and slope (57%). This is broken down in @tbl-results_mnar500 at the end of the page.
 
 #### Brier Score
 
 The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy).
+
+The average for all senarios under MNAR at n=500 were under 0.1 with lower prevalence having higher accuracy. In all scenarios there was significant overlap of the confidence intervals for all methods and CCA consistently had the lowest average Brier Score.
 
 ```{r #fig-brier}
 #| label: brier_score
@@ -66,36 +46,40 @@ The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy).
 #| fig-height: 12 
 
 ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"), 
-           aes(x = AVG, y = Method, colour = Method)) +
-    geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
-    labs(y = NULL,
-         x = NULL,
-         colour = "Method\n(Mean, 95% CI)") +
-    theme_minimal() + 
-    facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
-    #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
-    # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
-                                   "Mean Imputation" = "red", 
-                                   "Multiple Imputation with Outcome" = "green",
-                                   "Multiple Imputation without Outcome" = "purple")) +
-    theme(legend.position = "right",
-          strip.text = element_text(size = 14),  # Customize strip text size
-          strip.placement = "outside",  # Place strip labels outside the plot area
-          strip.background = element_blank(),  # Remove strip background
-          axis.title.x = element_text(size = 14), 
-          axis.title.y = element_text(size = 14), 
-          axis.text.x = element_text(size = 12), 
-          axis.text.y = element_blank(),  # Remove y-axis text
-          axis.ticks.y = element_blank())  # Remove y-axis tick
+       aes(x = AVG, y = Method, colour = Method)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
+  geom_point(data = combined_df, aes(x = Brier, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+  labs(y = NULL,
+       x = NULL,
+       colour = "Method\n(Mean, 95% CI)") +
+  theme_minimal() + 
+  facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
+  #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
+  #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
+  # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
+  scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+                                 "Mean Imputation" = "red", 
+                                 "Multiple Imputation with Outcome" = "green",
+                                 "Multiple Imputation without Outcome" = "purple")) +
+  theme(legend.position = "right",
+        strip.text = element_text(size = 14),  # Customize strip text size
+        strip.placement = "outside",  # Place strip labels outside the plot area
+        strip.background = element_blank(),  # Remove strip background
+        axis.title.x = element_text(size = 14), 
+        axis.title.y = element_text(size = 14), 
+        axis.text.x = element_text(size = 12), 
+        axis.text.y = element_blank(),  # Remove y-axis text
+        axis.ticks.y = element_blank())  # Remove y-axis tick
   
 ```
 
 #### Discrimination
 
 The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.
+
+The highest average discrimination was associated with higher outcome prevalences at 5% and 10%. Wide confidence intervals were observed for CCA and 1% outcome prevalence where more than half the simulations did not converge. This was also observed under the highest amount of missingness (75%).
 
 ```{r #fig-auc}
 #| label: auc
@@ -107,7 +91,9 @@ The discrimination was calculated as the Area Under the Curve (AUC). Higher scor
 ggplot(simulation_parameters_long %>% filter(Measure=="AUC"), 
          aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
+    geom_point(data = combined_df, aes(x = AUC, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)",
@@ -135,9 +121,11 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
 
 #### Calibration in the Large and Calibration Slope
 
-The Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope.
+Calibration was assessed through calibration-in-the-large and the calibration slope.
 
-The ideal value of CATL is 0, which indicates perfect calibration, positive values indicate the model is underestimating the risk while negative values indicate overestimation. Larger deviations from 0 suggest poorer calibration.
+The ideal value of calibration-in-the-large is 0, which indicates perfect calibration, positive values indicate the model is underestimating the risk while negative values indicate overestimation. Larger deviations from 0 suggest poorer calibration.
+
+Worse calibration was observed at higher missingness. At 25% missing values, CCA performed the best, however it was affected most by high missingness (CCA\<0 when missingness 50% or 75% and outcome prevlance 5% and 75% ) Multiple imputation and mean imputation had similar calibration across scenarios except where prevalence 1% and missingness 50% which may be due to the number of simulations which did not converge (56%)
 
 ```{r #fig-calitl}
 #| label: calitl
@@ -149,7 +137,9 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
     ggplot(simulation_parameters_long %>% filter(Measure=="Calibration in the Large"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
+    geom_point(data = combined_df, aes(x = Cal_Int, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -174,6 +164,8 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
 
 The ideal value of the Calibration Slope is 1 indicating perfect calibration across all risk levels. Values less than 1 suggest overfitting (predictions are too extreme), while values greater than 1 suggest underfitting (predictions are too conservative). Values that differ significantly from 1 indicate poor calibration.
 
+CCA was consistently the closest average to 1 followed by mean imputation although the averages were very similar and there were wide overlapping confidence intervals.
+
 ```{r #fig-calslope}
 #| label: calslope
 #| echo: false
@@ -184,8 +176,10 @@ The ideal value of the Calibration Slope is 1 indicating perfect calibration acr
 ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
-    labs(y = NULL,
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
+    geom_point(data = combined_df, aes(x = Cal_Slope, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+  labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
@@ -213,6 +207,8 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"),
 
 The Bias was assessed for each simulation (where 0 indicates no bias and the model estimates are on average equal to the true values).
 
+At 10% and 5% outcome prevalence, the bias of CCA became increasingly negative and further from 0, mean imputation was also biased with the lowest and similar bias observed in the multiple imputation methods. At 1% prevalence there was no noticeable difference between the bias.
+
 ```{r fig-bias}
 #| label: bias
 #| echo: false
@@ -224,7 +220,9 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
  ggplot(simulation_parameters_long %>% filter(Measure=="Bias"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
+      geom_point(data = combined_df, aes(x = bias, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -251,7 +249,9 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
 
 ### Root Mean Square Error
 
-The RMSE was assessed for each simulation where lower error indicates a better fit of the model. The lowest prevalence simulations (1%) had the lowest mean square error.
+The RMSE was assessed for each simulation where lower error indicates a better fit of the model.
+
+The lowest prevalence simulations (1%) had the lowest mean square error as did CCA in each scenario although with wide overlapping confidence intervals.
 
 ```{r fig-rmse}
 #| label: rmse
@@ -264,7 +264,9 @@ The RMSE was assessed for each simulation where lower error indicates a better f
   ggplot(simulation_parameters_long %>% filter(Measure=="Root Mean Square Error"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
+      geom_point(data = combined_df, aes(x = rmse, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -288,5 +290,23 @@ The RMSE was assessed for each simulation where lower error indicates a better f
           axis.text.y = element_blank(),  # Remove y-axis text
           axis.ticks.y = element_blank())  # Remove y-axis tick  
   
+  
+```
+
+```{r, echo=FALSE}
+#| label: tbl-results_mnar500
+#| tbl-cap: Performance Measures at N=500 under MNAR
+
+# table of results
+  table_resultsn500 <- simulation_parameters_long %>% 
+        select("Parameter","Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
+        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
+   
+  ## quick table 
+  table_resultsn500 %>%
+    knitr::kable(col.names = c("Scenario", "Method to handle missing data", "Performance Measure", "Average", "Lower Confidence Interval", "Upper Confidence Interval", "Number of simulations that failed to converge"))
+                               
+                               
+
   
 ```

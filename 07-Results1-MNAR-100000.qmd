@@ -2,7 +2,7 @@
 title: "Results under Missing-Not-at-Random for N= 100,000"
 ---
 
-```{r}
+```{r, echo=FALSE}
 #| label: load_packages 
 #| include: false
 library(dplyr)
@@ -21,20 +21,6 @@ load("MNAR_100000_Combined_Long_30Aug2024.Rdata")
 ```
 
 ## Sample size N=100,000
-
-Table 6 describes the Performance Measures under N=100,000
-
-```{r}
-# table of results
-  table_resultsn500 <- simulation_parameters_long %>% 
-        select(Parameter,"Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
-        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
-   
-  ## quick table 
-  ft_results <- flextable(table_resultsn500) %>%
-     set_caption(caption = "Table 6: Performance Measures at N=100,000 under MNAR")
-  
-```
 
 #### Brier Score
 
@@ -272,3 +258,22 @@ The RMSE was assessed for each simulation where lower error indicates a better f
   
   
 ```
+
+Below, @tbl-results_mnar100000 summarises the Performance Measures under N=100,000.
+
+```{r, echo=FALSE}
+#| label: tbl-results_mnar100000
+#| tbl-cap: Performance Measures at N=100,000 under MNAR
+
+# table of results
+  table_resultsn100000 <- simulation_parameters_long %>% 
+        select("Parameter","Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
+        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
+   
+  ## quick table 
+  table_resultsn100000 %>%
+    knitr::kable(col.names = c("Scenario", "Method to handle missing data", "Performance Measure", "Average", "Lower Confidence Interval", "Upper Confidence Interval", "Number of simulations that failed to converge"))
+
+```
+
+#### 

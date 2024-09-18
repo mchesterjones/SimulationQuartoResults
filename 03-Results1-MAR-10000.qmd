@@ -11,7 +11,6 @@ library(tidyr)
 library(flextable)
 ```
 
-
 ```{r}
 #| label: open_datasets_mar_n10000 
 #| include: false
@@ -24,19 +23,7 @@ load("MAR_10000_Combined_Long_29Aug2024.Rdata")
 ```
 
 ### Predictive Performance from Study 1 N=10,000 under Missing at Random {#-predictive-performance-mar-10000}
-Table 2 summarises the performance measures under N=10,000. 
-```{r}
-# table of results
-  table_results10000 <- simulation_parameters_long %>% 
-        select(Parameter,"Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
-        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
-   
-  ## quick table 
-  ft_results <- flextable(table_results10000) %>%
-     set_caption(caption = "Table 2: Performance Measures at N=10,000 under MAR")
-  
 
-```
 
 ```{r}
 #| label: open_datasets_n10000 
@@ -49,8 +36,10 @@ setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Progr
 load("MAR_10000_Combined_Long_29Aug2024.Rdata")
 ```
 
-#### Brier Score 
-The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.  
+#### Brier Score
+
+The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.
+
 ```{r #fig-brier}
 #| label: brier_score
 #| echo: false
@@ -87,9 +76,10 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
 ```
 
 #### Discrimination
-The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance. 
 
-```{r #fig-auc} 
+The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.
+
+```{r #fig-auc}
 #| label: auc
 #| echo: false
 #| fig-cap: AUC for each combination of prevalence, sample size, missingness under Missing at Random
@@ -125,13 +115,12 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
 ```
 
 #### Calibration in the Large and Calibration Slope
-The Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope. 
 
-The ideal value of CATL is 0, which indicates perfect calibration, positive values indicate the model is underestimating the risk while negative values indicate overestimation. Larger deviations from 0 suggest poorer calibration. 
+The Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope.
 
+The ideal value of CATL is 0, which indicates perfect calibration, positive values indicate the model is underestimating the risk while negative values indicate overestimation. Larger deviations from 0 suggest poorer calibration.
 
-
-```{r #fig-calitl} 
+```{r #fig-calitl}
 #| label: calitl
 #| echo: false
 #| fig-cap: Calibration in the Large for each combination of prevalence, sample size, missingness under Missing at Random
@@ -164,9 +153,9 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
   
 ```
 
-The ideal value of the Calibration Slope is 1 indicating perfect calibration across all risk levels. Values less than 1 suggest overfitting (predictions are too extreme), while values greater than 1 suggest underfitting (predictions are too conservative). Values that differ significantly from 1 indicate poor calibration. 
+The ideal value of the Calibration Slope is 1 indicating perfect calibration across all risk levels. Values less than 1 suggest overfitting (predictions are too extreme), while values greater than 1 suggest underfitting (predictions are too conservative). Values that differ significantly from 1 indicate poor calibration.
 
-``` {r #fig-calslope}
+```{r #fig-calslope}
 #| label: calslope
 #| echo: false
 #| fig-cap: Calibration Slope for each combination of prevalence, sample size, missingness under Missing at Random
@@ -201,13 +190,11 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"),
 
 ```
 
+### Bias
 
-### Bias 
-The Bias was assessed for each simulation (where 0 indicates no bias and the model estimates are on average equal to the true values). 
+The Bias was assessed for each simulation (where 0 indicates no bias and the model estimates are on average equal to the true values).
 
-
-
-``` {r fig-bias}
+```{r fig-bias}
 #| label: bias
 #| echo: false
 #| fig-cap: Bias for each combination of prevalence, sample size, missingness under Missing at Random
@@ -242,14 +229,12 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
           axis.ticks.y = element_blank())  # Remove y-axis tick
   
 ```
-  
-  
 
-### Root Mean Square Error 
-The RMSE was assessed for each simulation where lower error indicates a better fit of the model. 
-The lowest prevalence simulations (1%) had the lowest mean square error. 
+### Root Mean Square Error
 
-``` {r fig-rmse}
+The RMSE was assessed for each simulation where lower error indicates a better fit of the model. The lowest prevalence simulations (1%) had the lowest mean square error.
+
+```{r fig-rmse}
 #| label: rmse
 #| echo: false
 #| fig-cap: RMSE for each combination of prevalence, sample size, missingness under Missing at Random
@@ -286,4 +271,19 @@ The lowest prevalence simulations (1%) had the lowest mean square error.
   
   
 ```
+Below, @tbl-results_mar10000 summarises the Performance Measures under N=100,000.
 
+```{r, echo=FALSE}
+#| label: tbl-results_mar10000
+#| tbl-cap: Performance Measures at N=10,000 under MNAR
+
+# table of results
+  table_resultsn10000 <- simulation_parameters_long %>% 
+        select("Parameter","Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
+        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
+   
+  ## quick table 
+  table_resultsn10000 %>%
+    knitr::kable(col.names = c("Scenario", "Method to handle missing data", "Performance Measure", "Average", "Lower Confidence Interval", "Upper Confidence Interval", "Number of simulations that failed to converge"))
+
+```

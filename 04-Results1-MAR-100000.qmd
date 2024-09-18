@@ -22,19 +22,8 @@ setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Progr
 load("MAR_100000_Combined_Long_30Aug2024.Rdata")
 ```
 
-### Predictive Performance from Study 1 N=100,000 under Missing at Random {#-redictive-performance-n500}
+### Predictive Performance from Study 1 N=100,000 under Missing at Random {#-predictive-performance-mar100000}
 
-```{r}
-
-# table of results
-  table_results <- simulation_parameters_long %>% 
-        select(Parameter,"Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
-        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
-   
-  ## quick table 
-  ft_results <- flextable(table_results) %>%
-     set_caption(caption = "Table 3: Performance Measures at N=100,000 under MAR")
-```
 
 #### Brier Score
 
@@ -270,4 +259,20 @@ The RMSE was assessed for each simulation where lower error indicates a better f
           axis.ticks.y = element_blank())  # Remove y-axis tick  
   
   
+```
+Below, @tbl-results_mar100000 summarises the Performance Measures under N=100,000.
+
+```{r, echo=FALSE}
+#| label: tbl-results_mar100000
+#| tbl-cap: Performance Measures at N=100,000 under MNAR
+
+# table of results
+  table_resultsn100000 <- simulation_parameters_long %>% 
+        select("Parameter","Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
+        mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
+   
+  ## quick table 
+  table_resultsn100000 %>%
+    knitr::kable(col.names = c("Scenario", "Method to handle missing data", "Performance Measure", "Average", "Lower Confidence Interval", "Upper Confidence Interval", "Number of simulations that failed to converge"))
+
 ```
