@@ -6,15 +6,10 @@ date: "2024-08-24"
 
 ## Table of Contents
 
-1. Protocol of Simulation Study 1
-2. Results of Simulation Study 1
+Section 1: Protocol of Simulation Study 1
 
-## Introduction
+Section 2: Missing at Random results under different sample sizes
 
-In this book, we will cover the following:
+Section 3: Missing Not at Random results under different sample sizes
 
-- The protocols used in the simulation studies.
-- Detailed results and analysis of the simulations.
-- Conclusions and future directions.
-
-
+## 

@@ -1,30 +1,33 @@
 ---
-title: "Results under Missing-Not-at-Random for N= 100,000"
+title: " Results for MAR, N=10,000"
 ---
 
-```{r, echo=FALSE}
+```{r}
 #| label: load_packages 
 #| include: false
 library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(flextable)
+```
 
-
+```{r}
+#| label: open_datasets_mar_n10000 
+#| include: false
 ## Set working directory 
 setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\SimulationStudy\\Data") 
 
-# Data
-load("MNAR_100000_Combined_Long_30Aug2024.Rdata")
-
-
+## Load required datasets 
+########################
+load("MAR_10000_Combined_Long_19Sep2024.Rdata")
+load("MAR_10000_Combined_19Sep2024.Rdata")
 ```
 
-## Sample size N=100,000
+### Predictive Performance from Study 1 N=10,000 under Missing at Random {#-predictive-performance-mar-10000}
 
 #### Brier Score
 
-The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy).
+The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.
 
 ```{r #fig-brier}
 #| label: brier_score
@@ -36,7 +39,9 @@ The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy).
 ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
+  geom_point(data = combined_df, aes(x = Brier, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -75,11 +80,12 @@ The discrimination was calculated as the Area Under the Curve (AUC). Higher scor
 ggplot(simulation_parameters_long %>% filter(Measure=="AUC"), 
          aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
+  geom_point(data = combined_df, aes(x = AUC, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
-         colour = "Method\n(Mean, 95% CI)",
-      caption = "Footnote: This graph shows the AUC for each combination of prevalence, sample size, and missingness under MNAR.") +
+         colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
   #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
@@ -117,7 +123,9 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
     ggplot(simulation_parameters_long %>% filter(Measure=="Calibration in the Large"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
+      geom_point(data = combined_df, aes(x = Cal_Int, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -152,7 +160,9 @@ The ideal value of the Calibration Slope is 1 indicating perfect calibration acr
 ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
+  geom_point(data = combined_df, aes(x = Cal_Slope, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -192,7 +202,9 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
  ggplot(simulation_parameters_long %>% filter(Measure=="Bias"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
+   geom_point(data = combined_df, aes(x = bias, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -232,7 +244,9 @@ The RMSE was assessed for each simulation where lower error indicates a better f
   ggplot(simulation_parameters_long %>% filter(Measure=="Root Mean Square Error"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
+    geom_point(data = combined_df, aes(x = rmse, y = Method), 
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -259,21 +273,19 @@ The RMSE was assessed for each simulation where lower error indicates a better f
   
 ```
 
-Below, @tbl-results_mnar100000 summarises the Performance Measures under N=100,000.
+Below, @tbl-results_mar10000 summarises the Performance Measures under N=100,000.
 
 ```{r, echo=FALSE}
-#| label: tbl-results_mnar100000
-#| tbl-cap: Performance Measures at N=100,000 under MNAR
+#| label: tbl-results_mar10000
+#| tbl-cap: Performance Measures at N=10,000 under MNAR
 
 # table of results
-  table_resultsn100000 <- simulation_parameters_long %>% 
+  table_resultsn10000 <- simulation_parameters_long %>% 
         select("Parameter","Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
         mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
    
   ## quick table 
-  table_resultsn100000 %>%
+  table_resultsn10000 %>%
     knitr::kable(col.names = c("Scenario", "Method to handle missing data", "Performance Measure", "Average", "Lower Confidence Interval", "Upper Confidence Interval", "Number of simulations that failed to converge"))
 
 ```
-
-#### 

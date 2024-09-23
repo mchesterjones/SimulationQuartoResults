@@ -18,15 +18,16 @@ At implementation, how does missing data impact different sample sizes at low ou
 
 ## Data-generating mechanisms
 
-Data will be generated to create a development dataset to build the CPM (fully observed). This dataset and corresponding model will only be generated **once** because the focus here how methods to handle missing data at validation (mimicking implementation) affect model performance. The development dataset is fixed at 100,000 with prevalence 5%.
+Data will be generated to create a development dataset to build the CPM (fully observed). This dataset and corresponding model will only be generated **once** because the focus here how methods to handle missing data at validation (mimicking implementation) affect model performance. The development dataset is fixed at 100,000 with prevalence 5%. I will develop a CPM based on logistic regression to model the binary outcome Y with five continuous predictors X~1~ -X~5~, Table 1.I include an unmeasured variable $U$ that is also included in the CPM. 
 
-The second dataset will represent a validation study with missingness in predictor $X_1$. I will develop a CPM based on logistic regression to model the binary outcome Y with five continuous predictors X~1~ -X~5~, Table 1. The binary outcome Y is always observed and the prevalence of Y will be varied across 10%, 5% and 1%, Table 1. These prevalence were selected to represent increasing degrees of low prevalence with 1% being the most extreme.
+The second dataset will represent a validation study with missingness in only one predictor, $X_1$.The binary outcome Y is always observed and the prevalence of Y will be varied across 10%, 5% and 1%, Table 1. These prevalence were selected to represent increasing degrees of low prevalence with 1% being the most extreme. The sample sizes were selected as 500, 10,000 and 100,000 to give different extremes of validation compared to the development.
 
-The sample sizes were selected as 500, 10,000 and 100,000 to give different extremes of validation compared to the development.
+One predictor, X~1~ is partially observed depending on the mechanism for missing data (i.e., the probability X~1~ is missing denoted $R_1$). The remaining predictors (X~2~ - X~5~) are fully observed. Only one predictor (X~2~ ) will have an effect on the likelihood of X~1~ being missing. The missing data is simulated under three scenarios, Missing-Completely-at-Random (MCAR), @fig-mcar, Missing-at-Random (MAR), @fig-mar, and Missing-not-at-Random (MNAR), @fig-mnar. The unmeasured variable U also induces a relationship between $R_1$ and $Y$ under MNAR.
 
-One predictor, X~1~ is partially observed depending on the mechanism for missing data (i.e., the probability X~1~ is missing denoted $R_1$). The remaining predictors (X~2~ - X~5~) are fully observed. Only one predictor (X~2~ ) will have an effect on the likelihood of X~1~ being missing. The missing data is simulated under three scenarios, Missing-at-Random (MAR), @fig-mar, and Missing-not-at-Random (MNAR), @fig-mnar. Under MNAR, I include an unmeasured variable $U$ that induces a relationship between $R_1$ and $Y$.
+::: {#fig-dag layout-ncol="3"}
 
-::: {#fig-dag layout-ncol="2"}
+![Missing-completely-at-Random](figures/MCAR.png){#fig-mcar}
+
 ![Missing-at-Random](figures/MAR.png){#fig-mar}
 
 ![Missing-Not-at-Random](figures/MNAR.png){#fig-mnar}

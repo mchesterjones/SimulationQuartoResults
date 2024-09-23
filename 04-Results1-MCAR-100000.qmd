@@ -1,8 +1,8 @@
 ---
-title: "Results for MAR N=500"
+title: "Results for MCAR N=100,000"
 ---
 
-```{r, echo=FALSE}
+```{r}
 #| label: load_packages 
 #| include: false
 library(dplyr)
@@ -11,20 +11,19 @@ library(tidyr)
 library(flextable)
 ```
 
-```{r , echo=FALSE}
-#| label: open_datasets_mar_n500 
+```{r}
+#| label: open_datasets_mcar_100000 
 #| include: false
 ## Set working directory 
 setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\SimulationStudy\\Data") 
 
 ## Load required datasets 
 ########################
-load("MAR_500_Combined_Long_28Aug2024.Rdata")
+load("MCAR_100000_Combined_22Sep2024.Rdata")
+load("MCAR_100000_Combined_Long_22Sep2024.Rdata")
 ```
 
-### Predictive Performance from Study 1 N=500 under Missing at Random {#-redictive-performance-n500}
-
-At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, almost half the simulations (46%) at 1% prevalence were unable to calculate the discrimination (AUC), calibration intercept and slope, @tbl-results_mar500. 
+### Predictive Performance from Study 1 N=100,000 under Missing Completely at Random {#-predictive-performance-mar100000}
 
 #### Brier Score
 
@@ -33,14 +32,16 @@ The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). 
 ```{r #fig-brier}
 #| label: brier_score
 #| echo: false
-#| fig-cap: Brier Score for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Brier Score for each combination of prevalence, sample size, missingness under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
 ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+  geom_point(data = combined_df, aes(x = Brier, y = Method),              
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -72,14 +73,16 @@ The discrimination was calculated as the Area Under the Curve (AUC). Higher scor
 ```{r #fig-auc}
 #| label: auc
 #| echo: false
-#| fig-cap: AUC for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: AUC for each combination of prevalence, sample size, missingness under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
 ggplot(simulation_parameters_long %>% filter(Measure=="AUC"), 
          aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+  geom_point(data = combined_df, aes(x = AUC, y = Method),              
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -113,14 +116,16 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
 ```{r #fig-calitl}
 #| label: calitl
 #| echo: false
-#| fig-cap: Calibration in the Large for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Calibration in the Large for each combination of prevalence, sample size, missingness under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
     ggplot(simulation_parameters_long %>% filter(Measure=="Calibration in the Large"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+      geom_point(data = combined_df, aes(x = Cal_Int, y = Method),               
+                 shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -148,14 +153,16 @@ The ideal value of the Calibration Slope is 1 indicating perfect calibration acr
 ```{r #fig-calslope}
 #| label: calslope
 #| echo: false
-#| fig-cap: Calibration Slope for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Calibration Slope for each combination of prevalence, sample size, missingness under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
 ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+  geom_point(data = combined_df, aes(x = Cal_Slope, y = Method),              
+             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -187,7 +194,7 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
 ```{r fig-bias}
 #| label: bias
 #| echo: false
-#| fig-cap: Bias for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Bias for each combination of prevalence, sample size, missingness under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -195,7 +202,9 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
  ggplot(simulation_parameters_long %>% filter(Measure=="Bias"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+   geom_point(data = combined_df, aes(x = bias, y = Method),               
+              shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -227,7 +236,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
 ```{r fig-rmse}
 #| label: rmse
 #| echo: false
-#| fig-cap: RMSE for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: RMSE for each combination of prevalence, sample size, missingness under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -235,7 +244,9 @@ The RMSE was assessed for each simulation where lower error indicates a better f
   ggplot(simulation_parameters_long %>% filter(Measure=="Root Mean Square Error"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.2) +
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+    geom_point(data = combined_df, aes(x = rmse, y = Method),               
+               shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -262,22 +273,19 @@ The RMSE was assessed for each simulation where lower error indicates a better f
   
 ```
 
+Below, @tbl-results_mar100000 summarises the Performance Measures under N=100,000.
 
-The average performance measures across 100 simulations are summarised in @tbl-results_mar500. 
 ```{r, echo=FALSE}
-#| label: tbl-results_mar500
-#| tbl-cap: Performance Measures at N=500 under MAR
+#| label: tbl-results_mar100000
+#| tbl-cap: Performance Measures at N=100,000 under MNAR
 
 # table of results
-  table_resultsn500 <- simulation_parameters_long %>% 
+  table_resultsn100000 <- simulation_parameters_long %>% 
         select("Parameter","Method", "Measure", "AVG", "LCI", "UCI", "NACount") %>%
         mutate(across(c(AVG, LCI, UCI),  ~ round(.x, 4)))
    
   ## quick table 
-  table_resultsn500 %>%
+  table_resultsn100000 %>%
     knitr::kable(col.names = c("Scenario", "Method to handle missing data", "Performance Measure", "Average", "Lower Confidence Interval", "Upper Confidence Interval", "Number of simulations that failed to converge"))
-                               
-                               
 
-  
 ```
