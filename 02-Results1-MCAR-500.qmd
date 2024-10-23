@@ -113,9 +113,7 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
 
 ```
 
-### Calibration in the Large and Calibration Slope
-
-The Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope.
+### Calibration in the Large 
 
 The largest deviations from 0 and poorer calibration occurred at CCA at 75% missingness and 1% outcome prevalence. At prevalence 5% and 10%, the Calibration was very similar and close to zero.
 
@@ -156,7 +154,9 @@ The largest deviations from 0 and poorer calibration occurred at CCA at 75% miss
   
 ```
 
-The ideal value of the Calibration Slope is 1 indicating perfect calibration across all risk levels. Values less than 1 suggest overfitting (predictions are too extreme), while values greater than 1 suggest underfitting (predictions are too conservative). Values that differ significantly from 1 indicate poor calibration.
+### Calibration Slope
+
+The variance and range 1% outcome prevalence was highest and increased with missingness and if Complete Case Analysis was used (75% missingness, CCA: 1.5 95% CI -0.43, 4.97). At outcome prevalence 5% and 10%, CCA analysis also had the widest range and confidence intervals. In each scenario there was significant overlap between the missing data methods.
 
 ```{r #fig-calslope}
 #| label: calslope
@@ -166,39 +166,38 @@ The ideal value of the Calibration Slope is 1 indicating perfect calibration acr
 #| fig-height: 12 
 
 ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"), 
-           aes(x = AVG, y = Method, colour = Method)) +
-    geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+       aes(x = AVG, y = Method, colour = Method)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
   geom_point(data = combined_df, aes(x = Cal_Slope, y = Method),              
-             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
-    labs(y = NULL,
-         x = NULL,
-         colour = "Method\n(Mean, 95% CI)") +
-    theme_minimal() + 
-    facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
-    #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
-    # scale_x_continuous(limits = c(-0.16, 0.18), breaks = seq(-.16, 0.17, by = 0.04)) +    
-    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
-                                   "Complete Case Analysis" = "blue", 
-                                   "Mean Imputation" = "red", 
-                                   "Multiple Imputation with Outcome" = "green",
-                                   "Multiple Imputation without Outcome" = "purple")) +
-    theme(legend.position = "right",
-          strip.text = element_text(size = 14),  # Customize strip text size
-          strip.placement = "outside",  # Place strip labels outside the plot area
-          strip.background = element_blank(),  # Remove strip background
-          axis.title.x = element_text(size = 14), 
-          axis.title.y = element_text(size = 14), 
-          axis.text.x = element_text(size = 12), 
-          axis.text.y = element_blank(),  # Remove y-axis text
-          axis.ticks.y = element_blank())  # Remove y-axis tick
+             shape =4, position = position_jitter(width = 0.1), alpha = 0.5) + 
+  labs(y = NULL,
+       x = NULL,
+       colour = "Method\n(Mean, 95% CI)") +
+  theme_minimal() + 
+  facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
+  scale_x_continuous(limits = c(-0.5, 6), breaks = seq(0, 6, by = 0.5)) +    
+  scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                 "Complete Case Analysis" = "blue", 
+                                 "Mean Imputation" = "red", 
+                                 "Multiple Imputation with Outcome" = "green",
+                                 "Multiple Imputation without Outcome" = "purple")) +
+       labs(caption = "The ideal value of the Calibration Slope is 1 indicating perfect calibration across all risk levels. Values less than 1 suggest overfitting (predictions are too extreme), while values greater than 1 suggest underfitting (predictions are too conservative). Values that differ significantly from 1 indicate poor calibration.") +
+  theme(legend.position = "right",
+        strip.text = element_text(size = 14),  # Customize strip text size
+        strip.placement = "outside",  # Place strip labels outside the plot area
+        strip.background = element_blank(),  # Remove strip background
+        axis.title.x = element_text(size = 14), 
+        axis.title.y = element_text(size = 14), 
+        axis.text.x = element_text(size = 12), 
+        axis.text.y = element_blank(),  # Remove y-axis text
+        axis.ticks.y = element_blank())  # Remove y-axis tick
 
 ```
 
 ### Bias
 
-The Bias was assessed for each simulation (where 0 indicates no bias and the model estimates are on average equal to the true values).
+There was no difference in the bias between simulated scenarios with significant overlap of the confidence intervals. The bias range was smallest at smaller outcome prevalence. At higher prevalence (10%) and missingness 75%, the confidence intervals were widest with the most variability, particularly for CCA (0.0023, 95% CI -0.28, 0.038).
 
 ```{r fig-bias}
 #| label: bias
@@ -213,7 +212,7 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
     geom_point(size = 3) +
     geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +  
    geom_point(data = combined_df, aes(x = bias, y = Method),              
-              shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+              shape =4, position = position_jitter(width = 0.0001), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -227,6 +226,7 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+    labs(caption = "Bias of 0 indicates no bias and the model estimates are on average equal to the true values).") +
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area
@@ -241,7 +241,7 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
 
 ### Root Mean Square Error
 
-The RMSE was assessed for each simulation where lower error indicates a better fit of the model. The lowest prevalence simulations (1%) had the lowest mean square error.
+The lowest prevalence simulations (1%) had the lowest RMSE, with clusters around certain values. CCA had the most variable RMSE and there was overlap between the missing data methods.
 
 ```{r fig-rmse}
 #| label: rmse
@@ -256,7 +256,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
     geom_point(size = 3) +
     geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
     geom_point(data = combined_df, aes(x = rmse, y = Method),               
-               shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+               shape =4, position = position_jitter(width = 0.001), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -271,6 +271,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+        labs(caption = "The RMSE was assessed for each simulation where lower error indicates a better fit of the model.") +
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area

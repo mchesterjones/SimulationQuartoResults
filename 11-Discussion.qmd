@@ -1,0 +1,45 @@
+---
+title: "Simulation Study 1 Discussion"
+---
+
+## Research Question:
+
+This simulation study will evaluate two missingness mechanisms at validation and compare methods for handling missing data at low outcome prevalence rates and different sample sizes to answer the question:
+
+At implementation, how does missing data impact different sample sizes at low outcome prevalance rates?
+
+## Aims:
+
+1.  To determine the impact of missing data in one of five collected continuous variables in a logistic regression model
+
+2.  To investigate methods for handling missing data applied at deployment and how that may affect the precision of the model
+
+3.  To attain convergence at decreasing levels of prevalence
+
+## Brier Score
+
+The model predictions were more accurate when the event was rarer (i.e., lower outcome prevalence at 1%). This was true across all missing data mechanisms. Under MCAR there were no significant differences across imputation methods as would be expected because the missing data is a random subset of the data. Under MAR and particularly MNAR, CCA performed best, which is most likely due to a reduced sample size, increasing the rarity of the outcome and making the method appear more accurate especially at higher proportion of missingess where you would lose around 75% of the sample.
+
+## Discrimination
+
+Under MCAR, MAR and MNAR, at n=500 the discrimination was similar between all methods with significant overlap of very wide confidence intervals . Under MCAR, there was no difference in the discrimination between the methods with significant overlap of the confidence intervals at each sample size.
+
+Although the CCA average AUC was the highest of the methods in each scenario, it also had the highest variability and confidence intervals. Under MAR and MNAR, at larger sample sizes, (n=10,000 and n=100,000) and highest missingness (75%) CCA and mean imputation had, on average, the highest discrimination and were most similar to the non-missing scenario.
+
+## Calibration
+
+Under MCAR, mean imputation (where missing values were replaced with mean of the observed values) overestimated the predicted probabilities which became more apparent at higher missingness in the Calibration in the Large. This may be because of reduced variability in the data making the model less sensitive to the underlying patterns, leading to poorer calibration. Under MAR, the CATL was best for higher outcome prevalance. CCA had the worst calibration on average, followed by mean imputation. Both methods performed worse at higher missingness and lower outcome prevalence. Multiple imputations methods were the most consistent calibration methods. Under MNAR, all methods were poorly calibrated. The MI methods overalpped with zero and performed the best and CCA performed the worst with average calibration \<0. This was true at all sample sizes.
+
+Under MCAR, MAR and MNAR and MAR, the calibration intercept was closest to one for CCA, followed by mean imputation whilst the multiple imputation methods were furthest from one indicating they high risk people are for less risky and low risk people are more risky. The Multiple imputation methods calibration slope was less than one (underpredicts variability) suggesting it over fit the data, especially at high missingness.
+
+## Bias
+
+Under MCAR, CCA was the least biased method with the smallest variability. Mean imputation introduced a bias and over predicted the risk. The multiple imputation methods on average had similar bias to the CCA and non-missing, although with much larger variability. There was overlap in the confidence intervals for all methods.
+
+Under MAR, there was significant overlap between all confidence intervals of the methods in each scenario, with outcome prevalence 1% having the smallest variability. At larger sample sizes (n=10,000 and n=100,000), the mean imputation bias on average increased, in particular at higher prevalence and higher missingness. The mean imputation also had very small variability suggesting this method removes the variability and increases bias in the model. The CCA and MI methods had similar bias across scenarios.
+
+Under MNAR, CCA was the most biased, underpredicting risk significantly, especially with high prevalence, missingness, and large sample sizes. Mean imputation introduced positive bias, overpredicting risk with lower variability. Multiple imputation methods had the lowest bias, though it still overestimated risk.
+
+## Root Mean Square Error
+
+At all sample sizes, the lowest outcome prevalence 1% had the lowest RMSE, this is likely due to the low number of events inflating the predictive performance (i.e., correctly predicting everyone does not have the event when 99% do not). Under MAR and MNAR, although there was significant overlap in the confidence intervals, the CCA consistently had the lowest RMSE as it was more likely to lose positive cases, improving and lowering the error. Under MCAR, there was significant overlap between methods.

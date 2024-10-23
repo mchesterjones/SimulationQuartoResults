@@ -17,11 +17,13 @@ book:
     - file: "08-Results1-MNAR-500.qmd"
     - file: "09-Results1-MNAR-10000.qmd"
     - file: "10-Results1-MNAR-100000.qmd"
+    - file: "11-Discussion.qmd"
 
   sidebar: 
     style: "docked"
   
 format: 
-  html: default
+  html: 
+    number-sections: true 
   
 editor: visual

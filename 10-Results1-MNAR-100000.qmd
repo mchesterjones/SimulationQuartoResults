@@ -74,7 +74,7 @@ The AUC where the values were imputed by the mean imputation was consistent acro
 ```{r #fig-auc}
 #| label: auc
 #| echo: false
-#| fig-cap: AUC for each combination of prevalence at n=100,000 under Missing at Random
+#| fig-cap: AUC for each combination of prevalence at n=100,000 under Missing Not at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -120,7 +120,7 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
 ```{r #fig-calitl}
 #| label: calitl
 #| echo: false
-#| fig-cap: Calibration in the Large for each combination of prevalence at n=100,000 under Missing at Random
+#| fig-cap: Calibration in the Large for each combination of prevalence at n=100,000 under Missing Not at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -158,7 +158,7 @@ The ideal value of the Calibration Slope is 1 indicating perfect calibration acr
 ```{r #fig-calslope}
 #| label: calslope
 #| echo: false
-#| fig-cap: Calibration Slope for each combination of prevalence at n=100,000 under Missing at Random
+#| fig-cap: Calibration Slope for each combination of prevalence at n=100,000 under Missing Not at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -243,7 +243,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
 ```{r fig-rmse}
 #| label: rmse
 #| echo: false
-#| fig-cap: RMSE for each combination of prevalence at n=100,000 under Missing at Random
+#| fig-cap: RMSE for each combination of prevalence at n=100,000 under Missing Not at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -253,7 +253,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
     geom_point(size = 3) +
   geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
   geom_point(data = combined_df, aes(x = rmse, y = Method), 
-             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+             shape =4, position = position_jitter(width = 0.001), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -268,6 +268,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+        labs(caption = "Bias of 0 indicates no bias and the model estimates are on average equal to the true values).") +
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area

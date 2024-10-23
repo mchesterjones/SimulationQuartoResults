@@ -245,7 +245,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
     geom_point(size = 3) +
     geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
     geom_point(data = combined_df, aes(x = rmse, y = Method), 
-             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+             shape =4, position = position_jitter(width = 0.001), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -259,6 +259,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+        labs(caption = "Bias of 0 indicates no bias and the model estimates are on average equal to the true values).") +
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area

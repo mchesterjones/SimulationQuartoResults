@@ -1,0 +1,3433 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Results from Simulation Study - 3&nbsp; Results for MCAR N=500</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-Results1-MCAR-10000.html" rel="next">
+<link href="./01-Protocol1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-Results1-MCAR-500.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results for MCAR N=500</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Results from Simulation Study</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Results from Simulation Study</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Protocol1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simulation Study 1 Protocol</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Results1-MCAR-500.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results for MCAR N=500</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Results1-MCAR-10000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results for MCAR, N=10,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Results1-MCAR-100000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results for MCAR N=100,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Results1-MAR-500.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Results for MAR N=500</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Results1-MAR-10000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Results for MAR, N=10,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Results1-MAR-100000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Results for MAR N=100,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Results1-MNAR-500.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Results for MNAR N=500</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Results1-MNAR-10000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Results under MNAR for N=10,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Results1-MNAR-100000.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Results under MNAR for N= 100,000</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Simulation Study 1 Discussion</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#-redictive-performance-n500" id="toc--redictive-performance-n500" class="nav-link active" data-scroll-target="#-redictive-performance-n500"><span class="header-section-number">3.1</span> Predictive Performance from Study 1 N=500 under Missing Completely at Random</a>
+  <ul class="collapse">
+  <li><a href="#brier-score" id="toc-brier-score" class="nav-link" data-scroll-target="#brier-score"><span class="header-section-number">3.1.1</span> Brier Score</a></li>
+  <li><a href="#discrimination" id="toc-discrimination" class="nav-link" data-scroll-target="#discrimination"><span class="header-section-number">3.1.2</span> Discrimination</a></li>
+  <li><a href="#calibration-in-the-large-and-calibration-slope" id="toc-calibration-in-the-large-and-calibration-slope" class="nav-link" data-scroll-target="#calibration-in-the-large-and-calibration-slope"><span class="header-section-number">3.1.3</span> Calibration in the Large and Calibration Slope</a></li>
+  <li><a href="#bias" id="toc-bias" class="nav-link" data-scroll-target="#bias"><span class="header-section-number">3.1.4</span> Bias</a></li>
+  <li><a href="#root-mean-square-error" id="toc-root-mean-square-error" class="nav-link" data-scroll-target="#root-mean-square-error"><span class="header-section-number">3.1.5</span> Root Mean Square Error</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results for MCAR N=500</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="-redictive-performance-n500" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="-redictive-performance-n500"><span class="header-section-number">3.1</span> Predictive Performance from Study 1 N=500 under Missing Completely at Random</h2>
+<p>At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, almost half the simulations (46%) at 1% prevalence were unable to calculate the discrimination (AUC), calibration intercept and slope, <a href="05-Results1-MAR-500.html#tbl-results_mar500">Table&nbsp;<span>6.1</span></a>.</p>
+<section id="brier-score" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="brier-score"><span class="header-section-number">3.1.1</span> Brier Score</h3>
+<p>There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-Results1-MCAR-500_files/figure-html/brier_score-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Brier Score for each combination of prevalence at n=500 under Missing Completely at Random</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="discrimination" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="discrimination"><span class="header-section-number">3.1.2</span> Discrimination</h3>
+<p>There was very little difference observed between the scenarios. The highest range and confidence intervals were observed at 1% outcome prevalence and particularly when CCA was applied.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 293 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-Results1-MCAR-500_files/figure-html/auc-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">AUC for each combination of prevalence at n=500 under Missing Completely at Random</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="calibration-in-the-large-and-calibration-slope" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="calibration-in-the-large-and-calibration-slope"><span class="header-section-number">3.1.3</span> Calibration in the Large and Calibration Slope</h3>
+<p>The Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope.</p>
+<p>The largest deviations from 0 and poorer calibration occurred at CCA at 75% missingness and 1% outcome prevalence. At prevalence 5% and 10%, the Calibration was very similar and close to zero.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 265 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-Results1-MCAR-500_files/figure-html/calitl-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Calibration in the Large for each combination of prevalence at n=500 under Missing Completely at Random</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The ideal value of the Calibration Slope is 1 indicating perfect calibration across all risk levels. Values less than 1 suggest overfitting (predictions are too extreme), while values greater than 1 suggest underfitting (predictions are too conservative). Values that differ significantly from 1 indicate poor calibration.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 265 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-Results1-MCAR-500_files/figure-html/calslope-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Calibration Slope for each combination of prevalence at n=500 under Missing Completely at Random</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bias" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="bias"><span class="header-section-number">3.1.4</span> Bias</h3>
+<p>The Bias was assessed for each simulation (where 0 indicates no bias and the model estimates are on average equal to the true values).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-Results1-MCAR-500_files/figure-html/bias-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Bias for each combination of prevalence at n=500 under Missing Completely at Random</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="root-mean-square-error" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="root-mean-square-error"><span class="header-section-number">3.1.5</span> Root Mean Square Error</h3>
+<p>The RMSE was assessed for each simulation where lower error indicates a better fit of the model. The lowest prevalence simulations (1%) had the lowest mean square error.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-Results1-MCAR-500_files/figure-html/rmse-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">RMSE for each combination of prevalence at n=500 under Missing Completely at Random</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The average performance measures across 100 simulations are summarised in <a href="05-Results1-MAR-500.html#tbl-results_mar500">Table&nbsp;<span>6.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-results_mar500" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;3.1: Performance Measures at N=500 under MCAR</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 17%">
+<col style="width: 11%">
+<col style="width: 3%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Scenario</th>
+<th style="text-align: left;">Method to handle missing data</th>
+<th style="text-align: left;">Performance Measure</th>
+<th style="text-align: right;">Average</th>
+<th style="text-align: right;">Lower Confidence Interval</th>
+<th style="text-align: right;">Upper Confidence Interval</th>
+<th style="text-align: right;">Number of simulations that failed to converge</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0803</td>
+<td style="text-align: right;">-0.9195</td>
+<td style="text-align: right;">0.6210</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0670</td>
+<td style="text-align: right;">0.3734</td>
+<td style="text-align: right;">1.8353</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7652</td>
+<td style="text-align: right;">0.6252</td>
+<td style="text-align: right;">0.8959</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0801</td>
+<td style="text-align: right;">0.0444</td>
+<td style="text-align: right;">0.1287</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0026</td>
+<td style="text-align: right;">-0.0587</td>
+<td style="text-align: right;">0.0650</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0801</td>
+<td style="text-align: right;">0.0444</td>
+<td style="text-align: right;">0.1287</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2805</td>
+<td style="text-align: right;">0.2106</td>
+<td style="text-align: right;">0.3588</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0453</td>
+<td style="text-align: right;">-0.4947</td>
+<td style="text-align: right;">0.3864</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8208</td>
+<td style="text-align: right;">0.5691</td>
+<td style="text-align: right;">1.1260</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7234</td>
+<td style="text-align: right;">0.6608</td>
+<td style="text-align: right;">0.7989</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0832</td>
+<td style="text-align: right;">0.0602</td>
+<td style="text-align: right;">0.1076</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0026</td>
+<td style="text-align: right;">-0.0328</td>
+<td style="text-align: right;">0.0321</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0832</td>
+<td style="text-align: right;">0.0602</td>
+<td style="text-align: right;">0.1076</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2876</td>
+<td style="text-align: right;">0.2453</td>
+<td style="text-align: right;">0.3280</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0412</td>
+<td style="text-align: right;">-0.4853</td>
+<td style="text-align: right;">0.3986</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8166</td>
+<td style="text-align: right;">0.5445</td>
+<td style="text-align: right;">1.1562</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7226</td>
+<td style="text-align: right;">0.6596</td>
+<td style="text-align: right;">0.8021</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0832</td>
+<td style="text-align: right;">0.0607</td>
+<td style="text-align: right;">0.1082</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0022</td>
+<td style="text-align: right;">-0.0340</td>
+<td style="text-align: right;">0.0373</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0832</td>
+<td style="text-align: right;">0.0607</td>
+<td style="text-align: right;">0.1082</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2877</td>
+<td style="text-align: right;">0.2463</td>
+<td style="text-align: right;">0.3290</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">0.0139</td>
+<td style="text-align: right;">-0.4065</td>
+<td style="text-align: right;">0.4062</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9672</td>
+<td style="text-align: right;">0.6491</td>
+<td style="text-align: right;">1.3443</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7396</td>
+<td style="text-align: right;">0.6758</td>
+<td style="text-align: right;">0.8171</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0816</td>
+<td style="text-align: right;">0.0591</td>
+<td style="text-align: right;">0.1072</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0023</td>
+<td style="text-align: right;">-0.0278</td>
+<td style="text-align: right;">0.0380</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0816</td>
+<td style="text-align: right;">0.0591</td>
+<td style="text-align: right;">0.1072</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2848</td>
+<td style="text-align: right;">0.2432</td>
+<td style="text-align: right;">0.3275</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0417</td>
+<td style="text-align: right;">-0.6962</td>
+<td style="text-align: right;">0.4670</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0374</td>
+<td style="text-align: right;">0.5823</td>
+<td style="text-align: right;">1.5513</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7662</td>
+<td style="text-align: right;">0.6666</td>
+<td style="text-align: right;">0.8701</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0481</td>
+<td style="text-align: right;">0.1115</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0012</td>
+<td style="text-align: right;">-0.0460</td>
+<td style="text-align: right;">0.0451</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0481</td>
+<td style="text-align: right;">0.1115</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2829</td>
+<td style="text-align: right;">0.2193</td>
+<td style="text-align: right;">0.3339</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0439</td>
+<td style="text-align: right;">-0.6033</td>
+<td style="text-align: right;">0.3648</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8974</td>
+<td style="text-align: right;">0.5432</td>
+<td style="text-align: right;">1.1942</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7405</td>
+<td style="text-align: right;">0.6590</td>
+<td style="text-align: right;">0.8044</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0824</td>
+<td style="text-align: right;">0.0530</td>
+<td style="text-align: right;">0.1089</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0021</td>
+<td style="text-align: right;">-0.0414</td>
+<td style="text-align: right;">0.0339</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0824</td>
+<td style="text-align: right;">0.0530</td>
+<td style="text-align: right;">0.1089</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2862</td>
+<td style="text-align: right;">0.2302</td>
+<td style="text-align: right;">0.3300</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0389</td>
+<td style="text-align: right;">-0.6363</td>
+<td style="text-align: right;">0.3715</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8922</td>
+<td style="text-align: right;">0.5805</td>
+<td style="text-align: right;">1.1783</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7400</td>
+<td style="text-align: right;">0.6576</td>
+<td style="text-align: right;">0.7994</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0825</td>
+<td style="text-align: right;">0.0530</td>
+<td style="text-align: right;">0.1086</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0017</td>
+<td style="text-align: right;">-0.0422</td>
+<td style="text-align: right;">0.0319</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0825</td>
+<td style="text-align: right;">0.0530</td>
+<td style="text-align: right;">0.1086</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2863</td>
+<td style="text-align: right;">0.2302</td>
+<td style="text-align: right;">0.3296</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0031</td>
+<td style="text-align: right;">-0.5653</td>
+<td style="text-align: right;">0.4061</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0041</td>
+<td style="text-align: right;">0.6146</td>
+<td style="text-align: right;">1.3295</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7523</td>
+<td style="text-align: right;">0.6656</td>
+<td style="text-align: right;">0.8110</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0813</td>
+<td style="text-align: right;">0.0519</td>
+<td style="text-align: right;">0.1073</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0013</td>
+<td style="text-align: right;">-0.0366</td>
+<td style="text-align: right;">0.0371</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0813</td>
+<td style="text-align: right;">0.0519</td>
+<td style="text-align: right;">0.1073</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2842</td>
+<td style="text-align: right;">0.2277</td>
+<td style="text-align: right;">0.3275</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0212</td>
+<td style="text-align: right;">-0.5830</td>
+<td style="text-align: right;">0.4302</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0199</td>
+<td style="text-align: right;">0.6883</td>
+<td style="text-align: right;">1.5065</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7637</td>
+<td style="text-align: right;">0.6913</td>
+<td style="text-align: right;">0.8477</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0809</td>
+<td style="text-align: right;">0.0560</td>
+<td style="text-align: right;">0.1088</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0002</td>
+<td style="text-align: right;">-0.0392</td>
+<td style="text-align: right;">0.0399</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0809</td>
+<td style="text-align: right;">0.0560</td>
+<td style="text-align: right;">0.1088</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2834</td>
+<td style="text-align: right;">0.2366</td>
+<td style="text-align: right;">0.3298</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0151</td>
+<td style="text-align: right;">-0.5127</td>
+<td style="text-align: right;">0.4342</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9507</td>
+<td style="text-align: right;">0.7002</td>
+<td style="text-align: right;">1.2507</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7519</td>
+<td style="text-align: right;">0.6891</td>
+<td style="text-align: right;">0.8150</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0821</td>
+<td style="text-align: right;">0.0597</td>
+<td style="text-align: right;">0.1090</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">-0.0353</td>
+<td style="text-align: right;">0.0399</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0821</td>
+<td style="text-align: right;">0.0597</td>
+<td style="text-align: right;">0.1090</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2858</td>
+<td style="text-align: right;">0.2443</td>
+<td style="text-align: right;">0.3302</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0150</td>
+<td style="text-align: right;">-0.5258</td>
+<td style="text-align: right;">0.4401</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9541</td>
+<td style="text-align: right;">0.6889</td>
+<td style="text-align: right;">1.2787</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7526</td>
+<td style="text-align: right;">0.6912</td>
+<td style="text-align: right;">0.8169</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0821</td>
+<td style="text-align: right;">0.0592</td>
+<td style="text-align: right;">0.1089</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0001</td>
+<td style="text-align: right;">-0.0363</td>
+<td style="text-align: right;">0.0385</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0821</td>
+<td style="text-align: right;">0.0592</td>
+<td style="text-align: right;">0.1089</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2857</td>
+<td style="text-align: right;">0.2433</td>
+<td style="text-align: right;">0.3300</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">0.0047</td>
+<td style="text-align: right;">-0.4955</td>
+<td style="text-align: right;">0.4365</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0073</td>
+<td style="text-align: right;">0.7466</td>
+<td style="text-align: right;">1.3628</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7584</td>
+<td style="text-align: right;">0.6958</td>
+<td style="text-align: right;">0.8258</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0816</td>
+<td style="text-align: right;">0.0586</td>
+<td style="text-align: right;">0.1086</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0017</td>
+<td style="text-align: right;">-0.0346</td>
+<td style="text-align: right;">0.0401</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0816</td>
+<td style="text-align: right;">0.0586</td>
+<td style="text-align: right;">0.1086</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2848</td>
+<td style="text-align: right;">0.2421</td>
+<td style="text-align: right;">0.3295</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1054</td>
+<td style="text-align: right;">-1.2878</td>
+<td style="text-align: right;">0.7330</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0835</td>
+<td style="text-align: right;">0.2237</td>
+<td style="text-align: right;">2.5267</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7677</td>
+<td style="text-align: right;">0.5818</td>
+<td style="text-align: right;">0.9330</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0451</td>
+<td style="text-align: right;">0.0163</td>
+<td style="text-align: right;">0.0857</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0001</td>
+<td style="text-align: right;">-0.0353</td>
+<td style="text-align: right;">0.0430</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0451</td>
+<td style="text-align: right;">0.0163</td>
+<td style="text-align: right;">0.0857</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2079</td>
+<td style="text-align: right;">0.1279</td>
+<td style="text-align: right;">0.2927</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0353</td>
+<td style="text-align: right;">-0.5836</td>
+<td style="text-align: right;">0.5348</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8597</td>
+<td style="text-align: right;">0.4070</td>
+<td style="text-align: right;">1.3048</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7320</td>
+<td style="text-align: right;">0.6232</td>
+<td style="text-align: right;">0.8171</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0453</td>
+<td style="text-align: right;">0.0277</td>
+<td style="text-align: right;">0.0685</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0003</td>
+<td style="text-align: right;">-0.0227</td>
+<td style="text-align: right;">0.0298</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0453</td>
+<td style="text-align: right;">0.0277</td>
+<td style="text-align: right;">0.0685</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2113</td>
+<td style="text-align: right;">0.1664</td>
+<td style="text-align: right;">0.2617</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0314</td>
+<td style="text-align: right;">-0.6136</td>
+<td style="text-align: right;">0.5278</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8573</td>
+<td style="text-align: right;">0.4581</td>
+<td style="text-align: right;">1.3441</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7313</td>
+<td style="text-align: right;">0.6335</td>
+<td style="text-align: right;">0.8184</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0278</td>
+<td style="text-align: right;">0.0689</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0001</td>
+<td style="text-align: right;">-0.0213</td>
+<td style="text-align: right;">0.0274</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0278</td>
+<td style="text-align: right;">0.0689</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2113</td>
+<td style="text-align: right;">0.1667</td>
+<td style="text-align: right;">0.2625</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">0.0317</td>
+<td style="text-align: right;">-0.5728</td>
+<td style="text-align: right;">0.5894</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0078</td>
+<td style="text-align: right;">0.5238</td>
+<td style="text-align: right;">1.5264</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7480</td>
+<td style="text-align: right;">0.6449</td>
+<td style="text-align: right;">0.8402</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0447</td>
+<td style="text-align: right;">0.0274</td>
+<td style="text-align: right;">0.0686</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0027</td>
+<td style="text-align: right;">-0.0187</td>
+<td style="text-align: right;">0.0301</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0447</td>
+<td style="text-align: right;">0.0274</td>
+<td style="text-align: right;">0.0686</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2100</td>
+<td style="text-align: right;">0.1654</td>
+<td style="text-align: right;">0.2619</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0898</td>
+<td style="text-align: right;">-1.0156</td>
+<td style="text-align: right;">0.6530</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0787</td>
+<td style="text-align: right;">0.4644</td>
+<td style="text-align: right;">1.7571</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7736</td>
+<td style="text-align: right;">0.6375</td>
+<td style="text-align: right;">0.8811</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0437</td>
+<td style="text-align: right;">0.0191</td>
+<td style="text-align: right;">0.0736</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0009</td>
+<td style="text-align: right;">-0.0311</td>
+<td style="text-align: right;">0.0346</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0437</td>
+<td style="text-align: right;">0.0191</td>
+<td style="text-align: right;">0.0736</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2063</td>
+<td style="text-align: right;">0.1382</td>
+<td style="text-align: right;">0.2713</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0686</td>
+<td style="text-align: right;">-0.9591</td>
+<td style="text-align: right;">0.4304</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9382</td>
+<td style="text-align: right;">0.4976</td>
+<td style="text-align: right;">1.4092</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7493</td>
+<td style="text-align: right;">0.6354</td>
+<td style="text-align: right;">0.8474</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0442</td>
+<td style="text-align: right;">0.0218</td>
+<td style="text-align: right;">0.0636</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0013</td>
+<td style="text-align: right;">-0.0289</td>
+<td style="text-align: right;">0.0228</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0442</td>
+<td style="text-align: right;">0.0218</td>
+<td style="text-align: right;">0.0636</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2086</td>
+<td style="text-align: right;">0.1476</td>
+<td style="text-align: right;">0.2522</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0639</td>
+<td style="text-align: right;">-0.9938</td>
+<td style="text-align: right;">0.4557</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9358</td>
+<td style="text-align: right;">0.4716</td>
+<td style="text-align: right;">1.3987</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7494</td>
+<td style="text-align: right;">0.6318</td>
+<td style="text-align: right;">0.8441</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0442</td>
+<td style="text-align: right;">0.0223</td>
+<td style="text-align: right;">0.0639</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0011</td>
+<td style="text-align: right;">-0.0277</td>
+<td style="text-align: right;">0.0237</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0442</td>
+<td style="text-align: right;">0.0223</td>
+<td style="text-align: right;">0.0639</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2086</td>
+<td style="text-align: right;">0.1493</td>
+<td style="text-align: right;">0.2527</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0224</td>
+<td style="text-align: right;">-0.9407</td>
+<td style="text-align: right;">0.4942</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0447</td>
+<td style="text-align: right;">0.4908</td>
+<td style="text-align: right;">1.5436</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7606</td>
+<td style="text-align: right;">0.6312</td>
+<td style="text-align: right;">0.8549</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0438</td>
+<td style="text-align: right;">0.0217</td>
+<td style="text-align: right;">0.0637</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0008</td>
+<td style="text-align: right;">-0.0273</td>
+<td style="text-align: right;">0.0255</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0438</td>
+<td style="text-align: right;">0.0217</td>
+<td style="text-align: right;">0.0637</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2076</td>
+<td style="text-align: right;">0.1472</td>
+<td style="text-align: right;">0.2523</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0174</td>
+<td style="text-align: right;">-0.8729</td>
+<td style="text-align: right;">0.5546</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0401</td>
+<td style="text-align: right;">0.4877</td>
+<td style="text-align: right;">1.6056</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7679</td>
+<td style="text-align: right;">0.6426</td>
+<td style="text-align: right;">0.8608</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0451</td>
+<td style="text-align: right;">0.0225</td>
+<td style="text-align: right;">0.0678</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0013</td>
+<td style="text-align: right;">-0.0284</td>
+<td style="text-align: right;">0.0297</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0451</td>
+<td style="text-align: right;">0.0225</td>
+<td style="text-align: right;">0.0678</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2105</td>
+<td style="text-align: right;">0.1500</td>
+<td style="text-align: right;">0.2605</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0047</td>
+<td style="text-align: right;">-0.7365</td>
+<td style="text-align: right;">0.5729</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9670</td>
+<td style="text-align: right;">0.5734</td>
+<td style="text-align: right;">1.4194</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7554</td>
+<td style="text-align: right;">0.6558</td>
+<td style="text-align: right;">0.8373</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0458</td>
+<td style="text-align: right;">0.0255</td>
+<td style="text-align: right;">0.0701</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0016</td>
+<td style="text-align: right;">-0.0250</td>
+<td style="text-align: right;">0.0314</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0458</td>
+<td style="text-align: right;">0.0255</td>
+<td style="text-align: right;">0.0701</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2124</td>
+<td style="text-align: right;">0.1596</td>
+<td style="text-align: right;">0.2647</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0045</td>
+<td style="text-align: right;">-0.7443</td>
+<td style="text-align: right;">0.5601</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9665</td>
+<td style="text-align: right;">0.5599</td>
+<td style="text-align: right;">1.4457</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7556</td>
+<td style="text-align: right;">0.6661</td>
+<td style="text-align: right;">0.8340</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0459</td>
+<td style="text-align: right;">0.0259</td>
+<td style="text-align: right;">0.0702</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0016</td>
+<td style="text-align: right;">-0.0253</td>
+<td style="text-align: right;">0.0308</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0459</td>
+<td style="text-align: right;">0.0259</td>
+<td style="text-align: right;">0.0702</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2125</td>
+<td style="text-align: right;">0.1608</td>
+<td style="text-align: right;">0.2650</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">0.0178</td>
+<td style="text-align: right;">-0.7212</td>
+<td style="text-align: right;">0.5735</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0185</td>
+<td style="text-align: right;">0.5870</td>
+<td style="text-align: right;">1.5003</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7611</td>
+<td style="text-align: right;">0.6611</td>
+<td style="text-align: right;">0.8406</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0457</td>
+<td style="text-align: right;">0.0255</td>
+<td style="text-align: right;">0.0701</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0026</td>
+<td style="text-align: right;">-0.0240</td>
+<td style="text-align: right;">0.0315</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0457</td>
+<td style="text-align: right;">0.0255</td>
+<td style="text-align: right;">0.0701</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2120</td>
+<td style="text-align: right;">0.1596</td>
+<td style="text-align: right;">0.2648</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">0.2761</td>
+<td style="text-align: right;">-0.4334</td>
+<td style="text-align: right;">1.3161</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.4980</td>
+<td style="text-align: right;">-0.4341</td>
+<td style="text-align: right;">4.9682</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7929</td>
+<td style="text-align: right;">0.2804</td>
+<td style="text-align: right;">0.9929</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0323</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0004</td>
+<td style="text-align: right;">-0.0121</td>
+<td style="text-align: right;">0.0235</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0323</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0825</td>
+<td style="text-align: right;">0.0134</td>
+<td style="text-align: right;">0.1798</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1556</td>
+<td style="text-align: right;">-1.6114</td>
+<td style="text-align: right;">0.9869</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8858</td>
+<td style="text-align: right;">-0.1909</td>
+<td style="text-align: right;">2.0244</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7340</td>
+<td style="text-align: right;">0.4387</td>
+<td style="text-align: right;">0.9533</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0231</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0005</td>
+<td style="text-align: right;">-0.0103</td>
+<td style="text-align: right;">0.0135</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0231</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0919</td>
+<td style="text-align: right;">0.0162</td>
+<td style="text-align: right;">0.1519</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1535</td>
+<td style="text-align: right;">-1.6295</td>
+<td style="text-align: right;">0.9473</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.8703</td>
+<td style="text-align: right;">-0.1283</td>
+<td style="text-align: right;">2.0473</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7317</td>
+<td style="text-align: right;">0.4572</td>
+<td style="text-align: right;">0.9426</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0232</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0004</td>
+<td style="text-align: right;">-0.0106</td>
+<td style="text-align: right;">0.0132</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0232</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0919</td>
+<td style="text-align: right;">0.0162</td>
+<td style="text-align: right;">0.1524</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0755</td>
+<td style="text-align: right;">-1.5432</td>
+<td style="text-align: right;">0.9708</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0322</td>
+<td style="text-align: right;">-0.1753</td>
+<td style="text-align: right;">2.3833</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7499</td>
+<td style="text-align: right;">0.4566</td>
+<td style="text-align: right;">0.9677</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0095</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0231</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">-0.0096</td>
+<td style="text-align: right;">0.0140</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0095</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0231</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0915</td>
+<td style="text-align: right;">0.0148</td>
+<td style="text-align: right;">0.1521</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0564</td>
+<td style="text-align: right;">-1.0765</td>
+<td style="text-align: right;">1.0656</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.1000</td>
+<td style="text-align: right;">-0.4332</td>
+<td style="text-align: right;">2.9540</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7725</td>
+<td style="text-align: right;">0.3358</td>
+<td style="text-align: right;">0.9834</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0095</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0249</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0005</td>
+<td style="text-align: right;">-0.0112</td>
+<td style="text-align: right;">0.0158</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0095</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0249</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0878</td>
+<td style="text-align: right;">0.0140</td>
+<td style="text-align: right;">0.1578</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1727</td>
+<td style="text-align: right;">-1.6804</td>
+<td style="text-align: right;">0.9699</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9749</td>
+<td style="text-align: right;">-0.0629</td>
+<td style="text-align: right;">1.9998</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7584</td>
+<td style="text-align: right;">0.4706</td>
+<td style="text-align: right;">0.9415</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0098</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0003</td>
+<td style="text-align: right;">-0.0105</td>
+<td style="text-align: right;">0.0165</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0098</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0931</td>
+<td style="text-align: right;">0.0179</td>
+<td style="text-align: right;">0.1585</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1709</td>
+<td style="text-align: right;">-1.6968</td>
+<td style="text-align: right;">0.9554</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9677</td>
+<td style="text-align: right;">-0.0602</td>
+<td style="text-align: right;">2.1411</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7568</td>
+<td style="text-align: right;">0.4721</td>
+<td style="text-align: right;">0.9506</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0098</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0250</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0003</td>
+<td style="text-align: right;">-0.0097</td>
+<td style="text-align: right;">0.0161</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0098</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0250</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0930</td>
+<td style="text-align: right;">0.0169</td>
+<td style="text-align: right;">0.1580</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1177</td>
+<td style="text-align: right;">-1.6455</td>
+<td style="text-align: right;">1.0489</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.1202</td>
+<td style="text-align: right;">-0.1104</td>
+<td style="text-align: right;">2.2237</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7713</td>
+<td style="text-align: right;">0.4573</td>
+<td style="text-align: right;">0.9678</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0097</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">-0.0100</td>
+<td style="text-align: right;">0.0170</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0097</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0928</td>
+<td style="text-align: right;">0.0167</td>
+<td style="text-align: right;">0.1585</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0595</td>
+<td style="text-align: right;">-1.3776</td>
+<td style="text-align: right;">0.9850</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0778</td>
+<td style="text-align: right;">0.0253</td>
+<td style="text-align: right;">2.5825</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7746</td>
+<td style="text-align: right;">0.4816</td>
+<td style="text-align: right;">0.9767</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0101</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0250</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">-0.0104</td>
+<td style="text-align: right;">0.0155</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0101</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0250</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Complete Case Analysis</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0935</td>
+<td style="text-align: right;">0.0150</td>
+<td style="text-align: right;">0.1582</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0953</td>
+<td style="text-align: right;">-1.6503</td>
+<td style="text-align: right;">0.9765</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9835</td>
+<td style="text-align: right;">0.1476</td>
+<td style="text-align: right;">2.0751</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7638</td>
+<td style="text-align: right;">0.5432</td>
+<td style="text-align: right;">0.9607</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0104</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0267</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0004</td>
+<td style="text-align: right;">-0.0100</td>
+<td style="text-align: right;">0.0160</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0104</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0267</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation without Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0961</td>
+<td style="text-align: right;">0.0177</td>
+<td style="text-align: right;">0.1632</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0953</td>
+<td style="text-align: right;">-1.6348</td>
+<td style="text-align: right;">1.0204</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">0.9849</td>
+<td style="text-align: right;">0.1594</td>
+<td style="text-align: right;">2.1451</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7633</td>
+<td style="text-align: right;">0.5464</td>
+<td style="text-align: right;">0.9575</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0104</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0265</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0004</td>
+<td style="text-align: right;">-0.0097</td>
+<td style="text-align: right;">0.0166</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0104</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0265</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Multiple Imputation with Outcome</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0961</td>
+<td style="text-align: right;">0.0177</td>
+<td style="text-align: right;">0.1628</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0686</td>
+<td style="text-align: right;">-1.6117</td>
+<td style="text-align: right;">1.0201</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0381</td>
+<td style="text-align: right;">0.1354</td>
+<td style="text-align: right;">2.1988</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7702</td>
+<td style="text-align: right;">0.5360</td>
+<td style="text-align: right;">0.9610</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0104</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0265</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0007</td>
+<td style="text-align: right;">-0.0095</td>
+<td style="text-align: right;">0.0169</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0104</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0265</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Mean Imputation</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0960</td>
+<td style="text-align: right;">0.0174</td>
+<td style="text-align: right;">0.1628</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0270</td>
+<td style="text-align: right;">-0.5229</td>
+<td style="text-align: right;">0.3814</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0098</td>
+<td style="text-align: right;">0.6931</td>
+<td style="text-align: right;">1.3460</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7632</td>
+<td style="text-align: right;">0.6994</td>
+<td style="text-align: right;">0.8389</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0580</td>
+<td style="text-align: right;">0.1084</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0007</td>
+<td style="text-align: right;">-0.0361</td>
+<td style="text-align: right;">0.0354</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0580</td>
+<td style="text-align: right;">0.1084</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2834</td>
+<td style="text-align: right;">0.2408</td>
+<td style="text-align: right;">0.3292</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0270</td>
+<td style="text-align: right;">-0.5229</td>
+<td style="text-align: right;">0.3814</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0098</td>
+<td style="text-align: right;">0.6931</td>
+<td style="text-align: right;">1.3460</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7632</td>
+<td style="text-align: right;">0.6994</td>
+<td style="text-align: right;">0.8389</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0580</td>
+<td style="text-align: right;">0.1084</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0007</td>
+<td style="text-align: right;">-0.0361</td>
+<td style="text-align: right;">0.0354</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0580</td>
+<td style="text-align: right;">0.1084</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2834</td>
+<td style="text-align: right;">0.2408</td>
+<td style="text-align: right;">0.3292</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0270</td>
+<td style="text-align: right;">-0.5229</td>
+<td style="text-align: right;">0.3814</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0098</td>
+<td style="text-align: right;">0.6931</td>
+<td style="text-align: right;">1.3460</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7632</td>
+<td style="text-align: right;">0.6994</td>
+<td style="text-align: right;">0.8389</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0580</td>
+<td style="text-align: right;">0.1084</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0007</td>
+<td style="text-align: right;">-0.0361</td>
+<td style="text-align: right;">0.0354</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0808</td>
+<td style="text-align: right;">0.0580</td>
+<td style="text-align: right;">0.1084</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 10% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2834</td>
+<td style="text-align: right;">0.2408</td>
+<td style="text-align: right;">0.3292</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0106</td>
+<td style="text-align: right;">-0.6252</td>
+<td style="text-align: right;">0.5641</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0408</td>
+<td style="text-align: right;">0.6181</td>
+<td style="text-align: right;">1.6123</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7691</td>
+<td style="text-align: right;">0.6705</td>
+<td style="text-align: right;">0.8670</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0.0692</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0012</td>
+<td style="text-align: right;">-0.0215</td>
+<td style="text-align: right;">0.0311</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0.0692</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2111</td>
+<td style="text-align: right;">0.1585</td>
+<td style="text-align: right;">0.2630</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0106</td>
+<td style="text-align: right;">-0.6252</td>
+<td style="text-align: right;">0.5641</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0408</td>
+<td style="text-align: right;">0.6181</td>
+<td style="text-align: right;">1.6123</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7691</td>
+<td style="text-align: right;">0.6705</td>
+<td style="text-align: right;">0.8670</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0.0692</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0012</td>
+<td style="text-align: right;">-0.0215</td>
+<td style="text-align: right;">0.0311</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0.0692</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2111</td>
+<td style="text-align: right;">0.1585</td>
+<td style="text-align: right;">0.2630</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.0106</td>
+<td style="text-align: right;">-0.6252</td>
+<td style="text-align: right;">0.5641</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.0408</td>
+<td style="text-align: right;">0.6181</td>
+<td style="text-align: right;">1.6123</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7691</td>
+<td style="text-align: right;">0.6705</td>
+<td style="text-align: right;">0.8670</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0.0692</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">0.0012</td>
+<td style="text-align: right;">-0.0215</td>
+<td style="text-align: right;">0.0311</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0452</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0.0692</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 5% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.2111</td>
+<td style="text-align: right;">0.1585</td>
+<td style="text-align: right;">0.2630</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1580</td>
+<td style="text-align: right;">-1.6284</td>
+<td style="text-align: right;">0.8483</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.1270</td>
+<td style="text-align: right;">0.0160</td>
+<td style="text-align: right;">2.3564</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7942</td>
+<td style="text-align: right;">0.5004</td>
+<td style="text-align: right;">0.9745</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0215</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0004</td>
+<td style="text-align: right;">-0.0102</td>
+<td style="text-align: right;">0.0121</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0215</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 75%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0925</td>
+<td style="text-align: right;">0.0175</td>
+<td style="text-align: right;">0.1466</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1580</td>
+<td style="text-align: right;">-1.6284</td>
+<td style="text-align: right;">0.8483</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.1270</td>
+<td style="text-align: right;">0.0160</td>
+<td style="text-align: right;">2.3564</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7942</td>
+<td style="text-align: right;">0.5004</td>
+<td style="text-align: right;">0.9745</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0215</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0004</td>
+<td style="text-align: right;">-0.0102</td>
+<td style="text-align: right;">0.0121</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0215</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 50%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0925</td>
+<td style="text-align: right;">0.0175</td>
+<td style="text-align: right;">0.1466</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration in the Large</td>
+<td style="text-align: right;">-0.1580</td>
+<td style="text-align: right;">-1.6284</td>
+<td style="text-align: right;">0.8483</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Calibration Slope</td>
+<td style="text-align: right;">1.1270</td>
+<td style="text-align: right;">0.0160</td>
+<td style="text-align: right;">2.3564</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">AUC</td>
+<td style="text-align: right;">0.7942</td>
+<td style="text-align: right;">0.5004</td>
+<td style="text-align: right;">0.9745</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Brier Score</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0215</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Bias</td>
+<td style="text-align: right;">-0.0004</td>
+<td style="text-align: right;">-0.0102</td>
+<td style="text-align: right;">0.0121</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Mean Square Error</td>
+<td style="text-align: right;">0.0096</td>
+<td style="text-align: right;">0.0003</td>
+<td style="text-align: right;">0.0215</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Outcome prevalence 1% and Missingness 25%</td>
+<td style="text-align: left;">Validation data, no missingness</td>
+<td style="text-align: left;">Root Mean Square Error</td>
+<td style="text-align: right;">0.0925</td>
+<td style="text-align: right;">0.0175</td>
+<td style="text-align: right;">0.1466</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-Protocol1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simulation Study 1 Protocol</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-Results1-MCAR-10000.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Results for MCAR, N=10,000</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

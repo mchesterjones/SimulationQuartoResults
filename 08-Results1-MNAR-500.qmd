@@ -54,7 +54,8 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
   theme_minimal() + 
   facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
    scale_x_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, by = 0.05)) +    
-  scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+  scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                 "Complete Case Analysis" = "blue", 
                                  "Mean Imputation" = "red", 
                                  "Multiple Imputation with Outcome" = "green",
                                  "Multiple Imputation without Outcome" = "purple")) +
@@ -99,7 +100,8 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
   #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
   #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
  #   xlim(0.72,0.79)+
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -126,7 +128,7 @@ Worse calibration was observed at higher missingness. At 25% missing values, CCA
 ```{r #fig-calitl}
 #| label: calitl
 #| echo: false
-#| fig-cap: Calibration in the Large for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Calibration in the Large for each combination of prevalence at n=500 under Missing Not at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -141,7 +143,8 @@ Worse calibration was observed at higher missingness. At 25% missing values, CCA
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -165,7 +168,7 @@ CCA was consistently the closest average to 1 followed by mean imputation althou
 ```{r #fig-calslope}
 #| label: calslope
 #| echo: false
-#| fig-cap: Calibration Slope for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Calibration Slope for each combination of prevalence at n=500 under Missing Not at Random 
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -183,7 +186,8 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"),
     #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
     # scale_x_continuous(limits = c(-0.16, 0.18), breaks = seq(-.16, 0.17, by = 0.04)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -208,7 +212,7 @@ At 10% and 5% outcome prevalence, the bias of CCA became increasingly negative a
 ```{r fig-bias}
 #| label: bias
 #| echo: false
-#| fig-cap: Bias for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Bias for each combination of prevalence at n=500 under Missing Not at Random 
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -227,7 +231,8 @@ At 10% and 5% outcome prevalence, the bias of CCA became increasingly negative a
     #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
    # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -252,7 +257,7 @@ The lowest prevalence simulations (1%) had the lowest mean square error as did C
 ```{r fig-rmse}
 #| label: rmse
 #| echo: false
-#| fig-cap: RMSE for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: RMSE for each combination of prevalence at n=500 under Missing Not at Random 
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -262,7 +267,7 @@ The lowest prevalence simulations (1%) had the lowest mean square error as did C
     geom_point(size = 3) +
     geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
       geom_point(data = combined_df, aes(x = rmse, y = Method), 
-             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+             shape =4, position = position_jitter(width = 0.001), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -272,10 +277,12 @@ The lowest prevalence simulations (1%) had the lowest mean square error as did C
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
     # xlim(0.72,0.79)+
   #  scale_x_continuous(limits = c(0.205, 0.305), breaks = seq(0.2, 0.30, by = 0.01)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+       labs(caption = "Bias of 0 indicates no bias and the model estimates are on average equal to the true values).") +
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area
