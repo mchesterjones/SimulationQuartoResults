@@ -19,41 +19,47 @@ setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Progr
 
 ## Load required datasets 
 ########################
-load("MCAR_500_Combined_Long_22Sep2024.Rdata")
-load("MCAR_500_Combined_22Sep2024.Rdata")
+load("MCAR_500_Combined_Long_07Oct2024.Rdata")
+load("MCAR_500_Combined_07Oct2024.Rdata")
+
 ```
 
-### Predictive Performance from Study 1 N=500 under Missing Completely at Random {#-redictive-performance-n500}
+## Predictive Performance from Study 1 N=500 under Missing Completely at Random {#-redictive-performance-n500}
 
 At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, almost half the simulations (46%) at 1% prevalence were unable to calculate the discrimination (AUC), calibration intercept and slope, @tbl-results_mar500.
 
-#### Brier Score
+### Brier Score
 
-The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.
+There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.
 
 ```{r #fig-brier}
 #| label: brier_score
 #| echo: false
-#| fig-cap: Brier Score for each combination of prevalence, sample size, missingness under Missing Completely at Random
+#| fig-cap: Brier Score for each combination of prevalence at n=500 under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
 ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"), 
            aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   geom_point(data = combined_df, aes(x = Brier, y = Method),               shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
+  geom_point(data = combined_df, aes(x = Brier, y = Method),               
+             shape =4, position = position_jitter(width = 0.0001), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
-    #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
-    # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+  
+  ## Add X scale 
+     scale_x_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, by = 0.025)) +     
+  ## Add Colour Scale
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+    labs(caption = "The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). This x scale runs from 0 to 0.15.") + 
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area
@@ -63,17 +69,16 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
           axis.text.x = element_text(size = 12), 
           axis.text.y = element_blank(),  # Remove y-axis text
           axis.ticks.y = element_blank())  # Remove y-axis tick
-  
 ```
 
-#### Discrimination
+### Discrimination
 
-The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.
+There was very little difference observed between the scenarios. The highest range and confidence intervals were observed at 1% outcome prevalence and particularly when CCA was applied.
 
 ```{r #fig-auc}
 #| label: auc
 #| echo: false
-#| fig-cap: AUC for each combination of prevalence, sample size, missingness under Missing Completely at Random
+#| fig-cap: AUC for each combination of prevalence at n=500 under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -88,13 +93,14 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-  #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
-  #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
- #   xlim(0.72,0.79)+
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+       scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, by = 0.25)) + 
+  ## Add Colour Scale 
+  scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+  labs(caption = "The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.") +
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area
@@ -107,16 +113,16 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
 
 ```
 
-#### Calibration in the Large and Calibration Slope
+### Calibration in the Large and Calibration Slope
 
 The Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope.
 
-The ideal value of CATL is 0, which indicates perfect calibration, positive values indicate the model is underestimating the risk while negative values indicate overestimation. Larger deviations from 0 suggest poorer calibration.
+The largest deviations from 0 and poorer calibration occurred at CCA at 75% missingness and 1% outcome prevalence. At prevalence 5% and 10%, the Calibration was very similar and close to zero.
 
 ```{r #fig-calitl}
 #| label: calitl
 #| echo: false
-#| fig-cap: Calibration in the Large for each combination of prevalence, sample size, missingness under Missing Completely at Random
+#| fig-cap: Calibration in the Large for each combination of prevalence at n=500 under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -131,11 +137,13 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
-    theme(legend.position = "right",
+      labs(caption = "The ideal value of CATL is 0, which indicates perfect calibration, positive values indicate the model is underestimating the risk while negative values indicate overestimation. Larger deviations from 0 suggest poorer calibration.") +
+      theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area
           strip.background = element_blank(),  # Remove strip background
@@ -153,7 +161,7 @@ The ideal value of the Calibration Slope is 1 indicating perfect calibration acr
 ```{r #fig-calslope}
 #| label: calslope
 #| echo: false
-#| fig-cap: Calibration Slope for each combination of prevalence, sample size, missingness under Missing Completely at Random
+#| fig-cap: Calibration Slope for each combination of prevalence at n=500 under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -171,7 +179,8 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"),
     #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
     # scale_x_continuous(limits = c(-0.16, 0.18), breaks = seq(-.16, 0.17, by = 0.04)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -194,7 +203,7 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
 ```{r fig-bias}
 #| label: bias
 #| echo: false
-#| fig-cap: Bias for each combination of prevalence, sample size, missingness under Missing Completely at Random
+#| fig-cap: Bias for each combination of prevalence at n=500 under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -213,7 +222,8 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
     #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
    # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -236,7 +246,7 @@ The RMSE was assessed for each simulation where lower error indicates a better f
 ```{r fig-rmse}
 #| label: rmse
 #| echo: false
-#| fig-cap: RMSE for each combination of prevalence, sample size, missingness under Missing Completely at Random
+#| fig-cap: RMSE for each combination of prevalence at n=500 under Missing Completely at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -256,7 +266,8 @@ The RMSE was assessed for each simulation where lower error indicates a better f
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
     # xlim(0.72,0.79)+
   #  scale_x_continuous(limits = c(0.205, 0.305), breaks = seq(0.2, 0.30, by = 0.01)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +

@@ -1,5 +1,5 @@
 ---
-title: "Results for Missing-Not-at-Random N=500"
+title: "Results for MNAR N=500"
 ---
 
 ```{r  echo = FALSE,warning=FALSE,message = FALSE}
@@ -10,7 +10,6 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(flextable)
-library(captioner)
 library(officer)
 library(kableExtra)
 
@@ -19,8 +18,8 @@ library(kableExtra)
 setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Programs\\Study 1\\SimulationStudy1_11Jun2024\\SimulationStudy\\Data") 
 
 # Data
-load("MNAR_500_Combined_Long_18Sep2024.Rdata")
-load("MNAR_500_Combined_18Sep2024.Rdata")
+load("MNAR_500_Combined_Long_03Oct2024.Rdata")
+load("MNAR_500_Combined_03Oct2024.Rdata")
 
 # Number of NAs
 NAs_n500 <- simulation_parameters_long %>% filter(NACount!=0)
@@ -30,18 +29,16 @@ NAs_n500 <- simulation_parameters_long %>% filter(NACount!=0)
 
 ## Sample size N=500
 
-At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, more than half the simulations at 1% prevalence were unable to calculate the discrimination (AUC) (55%), calibration intercept (55%) and slope (57%). This is broken down in @tbl-results_mnar500 at the end of the page.
+At the smallest sample size, n=500. There were convergence issues where the outcome prevalence was lower (1% and 5%) and where Complete Case Analysis was used to handle the missing data as the sample size was reduced further. At missingness of 75%, more than half of the simulations at 1% prevalence were unable to calculate the discrimination (AUC) (53%), calibration intercept (53%) and slope (53%). This is broken down in @tbl-results_mnar500 at the end of the page.
 
 #### Brier Score
-
-The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy).
 
 The average for all senarios under MNAR at n=500 were under 0.1 with lower prevalence having higher accuracy. In all scenarios there was significant overlap of the confidence intervals for all methods and CCA consistently had the lowest average Brier Score.
 
 ```{r #fig-brier}
 #| label: brier_score
 #| echo: false
-#| fig-cap: Brier Score for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Brier Score for each combination of prevalence at n=500 under Missing Not at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -50,19 +47,18 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
   geom_point(size = 3) +
   geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8) +
   geom_point(data = combined_df, aes(x = Brier, y = Method), 
-             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+             shape =4, position = position_jitter(width = 0.0001), alpha = 0.5) + 
   labs(y = NULL,
        x = NULL,
        colour = "Method\n(Mean, 95% CI)") +
   theme_minimal() + 
   facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-  #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
-  #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
-  # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
+   scale_x_continuous(limits = c(0, 0.15), breaks = seq(0, 0.15, by = 0.05)) +    
   scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
                                  "Mean Imputation" = "red", 
                                  "Multiple Imputation with Outcome" = "green",
                                  "Multiple Imputation without Outcome" = "purple")) +
+           labs(caption = "The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). This x scale ranges from 0 to 0.1") + 
   theme(legend.position = "right",
         strip.text = element_text(size = 14),  # Customize strip text size
         strip.placement = "outside",  # Place strip labels outside the plot area
@@ -79,12 +75,12 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
 
 The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.
 
-The highest average discrimination was associated with higher outcome prevalences at 5% and 10%. Wide confidence intervals were observed for CCA and 1% outcome prevalence where more than half the simulations did not converge. This was also observed under the highest amount of missingness (75%).
+The highest average discrimination was associated with higher outcome prevalences at 5% and 10%. Wide confidence intervals were observed for CCA and 1% outcome prevalence . This was also observed under the highest amount of missingness (75%).
 
 ```{r #fig-auc}
 #| label: auc
 #| echo: false
-#| fig-cap: AUC for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: AUC for each combination of prevalence at n=500 under Missing Not at Random
 #| fig-width: 10
 #| fig-height: 12 
 

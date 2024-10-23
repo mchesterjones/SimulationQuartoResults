@@ -19,20 +19,20 @@ setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Progr
 
 ## Load required datasets 
 ########################
-load("MAR_10000_Combined_Long_19Sep2024.Rdata")
-load("MAR_10000_Combined_19Sep2024.Rdata")
+load("MAR_10000_Combined_Long_03Oct2024.Rdata")
+load("MAR_10000_Combined_03Oct2024.Rdata")
 ```
 
 ### Predictive Performance from Study 1 N=10,000 under Missing at Random {#-predictive-performance-mar-10000}
 
 #### Brier Score
 
-The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.
+At 1% outcome prevalence, there was almost no difference in the brier score for different imputation methods. At higher prevalence (5% and 10%), the CCA had lower (more accurate) brier scores although the confidence intervals overlapped. The range of all brier scores was small with the lowest average for CCA at 1% prevalence and 75% missingness (0.0082, 95% CI 0.0048, 0.0118) and the highest average for MI without the outcome at 10% prevalence and 75% missingness (0.085, 95% CI 0.079, 0.090).
 
 ```{r #fig-brier}
 #| label: brier_score
 #| echo: false
-#| fig-cap: Brier Score for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: Brier Score for each combination of prevalence at n=10,000 under Missing at Random
 #| fig-width: 10
 #| fig-height: 12 
 
@@ -41,19 +41,18 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
     geom_point(size = 3) +
     geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
   geom_point(data = combined_df, aes(x = Brier, y = Method), 
-             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+             shape =4, position = position_jitter(width = 0.003), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
-    #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
-    # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
+    scale_x_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, by = 0.025)) +    
     scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+      labs(caption = "The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). This x scale ranges from 0 to 0.1") + 
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area

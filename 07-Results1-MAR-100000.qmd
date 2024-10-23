@@ -19,17 +19,17 @@ setwd("C:\\Users\\maecj\\OneDrive - Nexus365\\A DPhil\\Simulation studies\\Progr
 
 ## Load required datasets 
 ########################
-load("MAR_100000_Combined_19Sep2024.Rdata")
-load("MAR_100000_Combined_Long_19Sep2024.Rdata")
+load("MAR_100000_Combined_03Oct2024.Rdata")
+load("MAR_100000_Combined_Long_03Oct2024.Rdata")
 ```
 
-### Predictive Performance from Study 1 N=100,000 under Missing at Random {#-predictive-performance-mar100000}
+## Predictive Performance from Study 1 N=100,000 under Missing at Random {#-predictive-performance-mar100000}
 
-#### Brier Score
+### Brier Score
 
-The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). There was no difference in performance of the imputation methods in any scenario. The lowest brier scores occurred at lower outcome prevalence.
+At prevalence 5% and 10%, the CCA brier score was consistently lower with no overlap in the confidence intervals; all other methods had similar brier scores @fig-brier_score. At 1% outcome prevalence, there was no difference between the methods although slightly lower average CCA.
 
-```{r #fig-brier}
+```{r}
 #| label: brier_score
 #| echo: false
 #| fig-cap: Brier Score for each combination of prevalence, sample size, missingness under Missing at Random
@@ -41,20 +41,21 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
     geom_point(size = 3) +
     geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
   geom_point(data = combined_df, aes(x = Brier, y = Method),              
-             shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+             shape =4, position = position_jitter(width = 0.006), alpha = 0.5) + 
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
-    #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
-    # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_x_continuous(limits = c(0, 0.1), breaks = seq(0, 0.1, by = 0.025)) +     
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",  
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
-    theme(legend.position = "right",
+         labs(caption = "The Brier score ranges between 0 (perfect accuracy) and 1 (perfect inaccuracy). This x scale ranges from 0 to 0.1") + 
+  
+  theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area
           strip.background = element_blank(),  # Remove strip background
@@ -66,23 +67,23 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Brier Score"),
   
 ```
 
-#### Discrimination
+### Discrimination
 
-The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.
+When missingness is lowest (25%), there is limited difference between the methods. Under each scenario, the multiple imputation methods have almost identical AUC. The multiple imputation methods had the lowest discrimination in each scenario and was most affected by missingness. CCA had the highest discrimination, followed by mean imputation. Large differences were seen at 10% prevalence.
 
-```{r #fig-auc}
-#| label: auc
+```{r}
+#| label: fig-auc
 #| echo: false
-#| fig-cap: AUC for each combination of prevalence, sample size, missingness under Missing at Random
+#| fig-cap: "Discrimination AUC for each combination of prevalence at n=100,000 under Missing at Random"
 #| fig-width: 10
 #| fig-height: 12 
-
 ggplot(simulation_parameters_long %>% filter(Measure=="AUC"), 
          aes(x = AVG, y = Method, colour = Method)) +
     geom_point(size = 3) +
-    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +   
-  geom_point(data = combined_df, aes(x = AUC, y = Method),              
+    geom_errorbar(aes(xmin = LCI, xmax = UCI), width = 0.8 ) +
+  geom_point(data = combined_df, aes(x = AUC, y = Method), 
              shape =4, position = position_jitter(width = 0.05), alpha = 0.5) + 
+   scale_x_continuous(limits = c(0.6, 1), breaks = seq(0.5, 1, by = 0.05)) +   
     labs(y = NULL,
          x = NULL,
          colour = "Method\n(Mean, 95% CI)") +
@@ -91,10 +92,11 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
   #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
   #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
  #   xlim(0.72,0.79)+
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",                                        "Complete Case Analysis" = "blue",  
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
+    labs(caption = "The discrimination was calculated as the Area Under the Curve (AUC). Higher scores indicate better discrimination with 0.5 indicating the model is no better than chance.") +
     theme(legend.position = "right",
           strip.text = element_text(size = 14),  # Customize strip text size
           strip.placement = "outside",  # Place strip labels outside the plot area
@@ -104,10 +106,9 @@ ggplot(simulation_parameters_long %>% filter(Measure=="AUC"),
           axis.text.x = element_text(size = 12), 
           axis.text.y = element_blank(),  # Remove y-axis text
           axis.ticks.y = element_blank())  # Remove y-axis tick
-
 ```
 
-#### Calibration in the Large and Calibration Slope
+### Calibration in the Large and Calibration Slope
 
 The Calibration was assessed through Calibration in the Large (CATL) and the Calibration Slope.
 
@@ -131,7 +132,8 @@ The ideal value of CATL is 0, which indicates perfect calibration, positive valu
          colour = "Method\n(Mean, 95% CI)") +
     theme_minimal() + 
     facet_wrap( ~Parameter , scales = "fixed", ncol=1) + 
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",  
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -171,7 +173,8 @@ ggplot(simulation_parameters_long %>% filter(Measure=="Calibration Slope"),
     #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
     # scale_x_continuous(limits = c(-0.16, 0.18), breaks = seq(-.16, 0.17, by = 0.04)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",  
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -213,7 +216,8 @@ The Bias was assessed for each simulation (where 0 indicates no bias and the mod
     #  facet_grid( Parameter ~ Measure, scales = "fixed") + 
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
    # scale_x_continuous(limits = c(0.042, 0.092), breaks = seq(0.04, 0.1, by = 0.004)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",  
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
@@ -256,7 +260,8 @@ The RMSE was assessed for each simulation where lower error indicates a better f
     #  facet_wrap(Measure ~ Parameter, scales = "free_x") + 
     # xlim(0.72,0.79)+
   #  scale_x_continuous(limits = c(0.205, 0.305), breaks = seq(0.2, 0.30, by = 0.01)) +    
-    scale_colour_manual(values = c("Complete Case Analysis" = "blue", 
+    scale_colour_manual(values = c("Validation data, no missingness" = "grey",  
+                                   "Complete Case Analysis" = "blue", 
                                    "Mean Imputation" = "red", 
                                    "Multiple Imputation with Outcome" = "green",
                                    "Multiple Imputation without Outcome" = "purple")) +
