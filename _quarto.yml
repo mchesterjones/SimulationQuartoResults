@@ -25,5 +25,8 @@ book:
 format: 
   html: 
     number-sections: true 
+  latex:
+    documentclass: "book"
+    number-sections: true
   
 editor: visual
